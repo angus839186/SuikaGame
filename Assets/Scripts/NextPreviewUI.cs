@@ -21,7 +21,6 @@ public class NextPreviewUI : MonoBehaviour
 
     private void Start()
     {
-        // 進場時同步一次（避免 UI 晚於 spawner 訂閱）
         if (spawner != null)
             HandleNextChanged(spawner.NextTierIndex);
     }
