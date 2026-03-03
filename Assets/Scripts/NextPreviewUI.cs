@@ -22,7 +22,7 @@ public class NextPreviewUI : MonoBehaviour
     private void Start()
     {
         if (spawner != null)
-            HandleNextChanged(spawner.NextTierIndex);
+            HandleNextChanged(spawner.nextFruitIndex);
     }
 
     private void HandleNextChanged(int tier)

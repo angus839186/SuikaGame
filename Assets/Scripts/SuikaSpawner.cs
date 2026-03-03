@@ -4,23 +4,28 @@ using System;
 
 public class SuikaSpawner : MonoBehaviour
 {
-    [SerializeField] private BoxCollider2D spawnArea;
-    [SerializeField] private Transform spawnY;
-    [SerializeField] private GameObject[] tierPrefabs;
-
-    [SerializeField] private int unlockedMaxTier = 0;
-    [SerializeField] private float spawnCooldown = 0.2f;
-
-    [SerializeField] private float spawnPadding = 0.3f; // 你想保留的內縮距離（世界座標）
-    [SerializeField] private bool includeFruitRadiusInClamp = true;
-
-    public event Action<int> OnNextChanged;
-
     private InputSystem_Actions input;
     private Camera cam;
+
+    [SerializeField] private BoxCollider2D clickArea;
+    [SerializeField] private Transform spawnY;
+    [SerializeField] private GameObject[] fruitPrefabs;
+
+    [SerializeField] private int unlockedFruitTier = 0;
+    [SerializeField] private float spawnCooldown = 0.2f;
+
+    [SerializeField] private float spawnPadding = 0.3f;
+    [SerializeField] private bool includeFruitRadiusInClamp = true;
+
+    private GameObject heldFruit;
+
+    public event Action<int> OnNextChanged;
     private float nextSpawnTime;
 
-    public int NextTierIndex { get; private set; }
+    public int currentFruitIndex { get; private set; }
+    public int nextFruitIndex { get; private set; }
+
+    private bool isPressing;
 
     [SerializeField, Range(0f, 0.2f)]
     private float highTierPenalty = 0.06f;
@@ -34,57 +39,151 @@ public class SuikaSpawner : MonoBehaviour
     private void OnEnable()
     {
         input.Enable();
-        input.Gameplay.Click.performed += OnClick;
+        input.Gameplay.Click.started += OnPressStarted;
+        input.Gameplay.Click.canceled += OnPressCanceled; // 放開
     }
 
     private void OnDisable()
     {
-        input.Gameplay.Click.performed -= OnClick;
+        input.Gameplay.Click.started -= OnPressStarted;
+        input.Gameplay.Click.canceled -= OnPressCanceled;
         input.Disable();
     }
 
     private void Start()
     {
-        RollNext();
+        // 先抽好 current / next
+        currentFruitIndex = RollNextWeighted();
+        nextFruitIndex = RollNextWeighted();
+        OnNextChanged?.Invoke(nextFruitIndex);
+
+        SpawnHeldFruit();
+        SnapHeldToPointerX(); // 開局就對齊一次
     }
 
-    private void OnClick(InputAction.CallbackContext ctx)
+    private void Update()
+    {
+        if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return;
+        if (heldFruit == null) return;
+
+        // PC：滑鼠移動就跟著移動（不需要按住）
+        if (Mouse.current != null)
+        {
+            SnapHeldToPointerX();
+            return;
+        }
+
+        // 手機：只有按住（pressing）才跟著移動
+        if (Touchscreen.current != null)
+        {
+            if (isPressing)
+                SnapHeldToPointerX();
+            return;
+        }
+
+        // 其他 Pointer（保底）：只有按住才動
+        if (isPressing)
+            SnapHeldToPointerX();
+    }
+
+    private void OnPressStarted(InputAction.CallbackContext ctx)
+    {
+        // 手機按住開始拖曳；PC 按下也算進入 press 狀態（但 PC 仍然會平時跟隨）
+        isPressing = true;
+    }
+
+    private void OnPressCanceled(InputAction.CallbackContext ctx)
+    {
+        // 放開才掉落
+        if (!isPressing) return;
+        isPressing = false;
+
+        TryDropHeldFruit();
+    }
+
+    private void TryDropHeldFruit()
     {
         if (Time.time < nextSpawnTime) return;
         if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return;
+        if (heldFruit == null) return;
 
+        // 放開：讓 held 變 Dynamic 掉下去
+        var rb = heldFruit.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.simulated = true;
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+
+        heldFruit = null;
+
+        // 隊列前移：current <- next，next <- 新抽
+        currentFruitIndex = nextFruitIndex;
+        nextFruitIndex = RollNextWeighted();
+        OnNextChanged?.Invoke(nextFruitIndex);
+
+        // 生成新的 held
+        SpawnHeldFruit();
+        SnapHeldToPointerX();
+
+        nextSpawnTime = Time.time + spawnCooldown;
+    }
+
+    private void SpawnHeldFruit()
+    {
+        var prefab = fruitPrefabs[currentFruitIndex];
+        if (prefab == null) return;
+
+        Vector3 pos = new Vector3(clickArea.bounds.center.x, spawnY.position.y, 0f);
+        heldFruit = Instantiate(prefab, pos, Quaternion.identity);
+
+        // held 不參與物理，避免碰牆/碰線抖動（最穩）
+        var rb = heldFruit.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.simulated = false;
+        }
+    }
+
+    private void SnapHeldToPointerX()
+    {
         Vector2 screenPos = input.Gameplay.Point.ReadValue<Vector2>();
         Vector3 world = cam.ScreenToWorldPoint(screenPos);
         world.z = 0f;
 
-        Bounds b = spawnArea.bounds;
+        float x = ClampXForTier(world.x, currentFruitIndex);
+
+        Vector3 p = heldFruit.transform.position;
+        p.x = x;
+        p.y = spawnY.position.y;
+        heldFruit.transform.position = p;
+    }
+
+    private float ClampXForTier(float rawX, int tierIndex)
+    {
+        Bounds b = clickArea.bounds;
+
         float r = 0f;
         if (includeFruitRadiusInClamp)
         {
-            var col = tierPrefabs[NextTierIndex].GetComponent<CircleCollider2D>();
+            var col = fruitPrefabs[tierIndex].GetComponent<CircleCollider2D>();
             if (col != null)
-                r = col.radius * tierPrefabs[NextTierIndex].transform.lossyScale.x; // 假設等比縮放
+                r = col.radius * fruitPrefabs[tierIndex].transform.lossyScale.x;
         }
 
         float minX = b.min.x + spawnPadding + r;
         float maxX = b.max.x - spawnPadding - r;
 
-        float x = Mathf.Clamp(world.x, minX, maxX);
-
-        Vector3 spawnPos = new Vector3(x, spawnY.position.y, 0f);
-
-        SpawnSpecific(NextTierIndex, spawnPos);
-        RollNext();
-
-        nextSpawnTime = Time.time + spawnCooldown;
+        return Mathf.Clamp(rawX, minX, maxX);
     }
 
     private int RollNextWeighted()
     {
-        // unlocked: 0..unlockedMaxTier
-        int n = unlockedMaxTier + 1;
+        int n = unlockedFruitTier + 1;
 
-        // weight(tier) = 1 - tier * penalty, 最小保底 0.05（避免完全抽不到）
         float total = 0f;
         float[] w = new float[n];
         for (int t = 0; t < n; t++)
@@ -102,19 +201,22 @@ public class SuikaSpawner : MonoBehaviour
         return n - 1;
     }
 
-    private void RollNext()
+    public GameObject SpawnSpecific(int tierIndex, Vector3 pos)
     {
-        NextTierIndex = RollNextWeighted();
-        OnNextChanged?.Invoke(NextTierIndex);
-    }
+        var obj = Instantiate(fruitPrefabs[tierIndex], pos, Quaternion.identity);
 
-    public void SpawnSpecific(int tierIndex, Vector3 pos)
-    {
-        Instantiate(tierPrefabs[tierIndex], pos, Quaternion.identity);
+        // 可統一初始化
+        var rb = obj.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        }
+
+        return obj;
     }
 
     public void UnlockTier(int tier)
     {
-        unlockedMaxTier = Mathf.Max(unlockedMaxTier, tier);
+        unlockedFruitTier = Mathf.Max(unlockedFruitTier, tier);
     }
 }
