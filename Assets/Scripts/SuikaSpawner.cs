@@ -88,17 +88,28 @@ public class SuikaSpawner : MonoBehaviour
 
     private void OnPressStarted(InputAction.CallbackContext ctx)
     {
-        // 手機按住開始拖曳；PC 按下也算進入 press 狀態（但 PC 仍然會平時跟隨）
-        isPressing = true;
+        isPressing = IsPointerInClickArea();
     }
 
     private void OnPressCanceled(InputAction.CallbackContext ctx)
     {
-        // 放開才掉落
         if (!isPressing) return;
         isPressing = false;
 
+        if (!IsPointerInClickArea()) return;
+
         TryDropHeldFruit();
+    }
+
+    private bool IsPointerInClickArea()
+    {
+        if (cam == null || clickArea == null) return false;
+
+        Vector2 screenPos = input.Gameplay.Point.ReadValue<Vector2>();
+        Vector3 world = cam.ScreenToWorldPoint(screenPos);
+        world.z = 0f;
+
+        return clickArea.OverlapPoint(world);
     }
 
     private void TryDropHeldFruit()

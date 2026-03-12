@@ -10,8 +10,7 @@ public class GameOverLine : MonoBehaviour
         var fruit = other.GetComponent<Fruit>();
         if (fruit == null) return;
 
-        // ✅ 只有掉進池子後，堆回來碰到線才算 GameOver
-        if (fruit.HasEnteredBucket)
+        if (fruit.IsInThePool)
         {
             GameManager.Instance.GameOver();
         }
