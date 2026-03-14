@@ -30,6 +30,8 @@ public class SuikaSpawner : MonoBehaviour
     [SerializeField, Range(0f, 0.2f)]
     private float highTierPenalty = 0.06f;
 
+    private bool canSpawn = true;
+
     private void Awake()
     {
         cam = Camera.main;
@@ -63,6 +65,7 @@ public class SuikaSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (!canSpawn) return;
         if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return;
         if (heldFruit == null) return;
 
@@ -88,11 +91,23 @@ public class SuikaSpawner : MonoBehaviour
 
     private void OnPressStarted(InputAction.CallbackContext ctx)
     {
+        if (!canSpawn)
+        {
+            isPressing = false;
+            return;
+        }
+
         isPressing = IsPointerInClickArea();
     }
 
     private void OnPressCanceled(InputAction.CallbackContext ctx)
     {
+        if (!canSpawn)
+        {
+            isPressing = false;
+            return;
+        }
+
         if (!isPressing) return;
         isPressing = false;
 
@@ -229,5 +244,11 @@ public class SuikaSpawner : MonoBehaviour
     public void UnlockTier(int tier)
     {
         unlockedFruitTier = Mathf.Max(unlockedFruitTier, tier);
+    }
+
+    public void SetSpawnEnabled(bool enabled)
+    {
+        canSpawn = enabled;
+        isPressing = false;
     }
 }

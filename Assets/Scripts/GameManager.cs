@@ -1,5 +1,5 @@
 using System;
-using UnityEditor.Animations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,17 +9,22 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private SuikaSpawner spawner;
 
-    public Text scoreText;
+    public TextMeshProUGUI scoreText;
 
-    [Header("Score")]
+    public TextMeshProUGUI photoScoreThresholdText;
+
+    [Header("分數")]
+
+    public int Score;
     [SerializeField] private int[] tierScores = new int[10];
 
-    public int Score { get; private set; }
-    public bool IsGameOver { get; private set; }
-    public int photoIndex { get; private set; }
-
     [Header("劇照分數門檻")]
+
+    [SerializeField]
+    public int currentPhotoIndex;
     [SerializeField] private int[] photoScoreThresholds;
+
+    public bool IsGameOver { get; private set; }
 
     public event Action<int> OnPhotoIndexChanged;
 
@@ -39,7 +44,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UpdateScoreUI();
-        OnPhotoIndexChanged?.Invoke(photoIndex);
     }
 
     public void Merge(int currentTierIndex, Vector3 spawnPos, GameObject a, GameObject b)
@@ -72,6 +76,19 @@ public class GameManager : MonoBehaviour
         {
             scoreText.text = Score.ToString();
         }
+
+        if (photoScoreThresholdText != null)
+        {
+            if (photoScoreThresholds != null && currentPhotoIndex < photoScoreThresholds.Length)
+            {
+                int nextThreshold = photoScoreThresholds[currentPhotoIndex];
+                photoScoreThresholdText.text = Score + "/" + nextThreshold;
+            }
+            else
+            {
+                photoScoreThresholdText.text = Score.ToString();
+            }
+        }
     }
 
     public void GameOver()
@@ -85,10 +102,18 @@ public class GameManager : MonoBehaviour
     {
         if (photoScoreThresholds == null || photoScoreThresholds.Length == 0) return;
 
-        while (photoIndex < photoScoreThresholds.Length && Score >= photoScoreThresholds[photoIndex])
+        bool photoIndexChanged = false;
+
+        while (currentPhotoIndex < photoScoreThresholds.Length && Score >= photoScoreThresholds[currentPhotoIndex])
         {
-            photoIndex++;
-            OnPhotoIndexChanged?.Invoke(photoIndex);
+            currentPhotoIndex++;
+            photoIndexChanged = true;
+            OnPhotoIndexChanged?.Invoke(currentPhotoIndex);
+        }
+
+        if (photoIndexChanged)
+        {
+            UpdateScoreUI();
         }
     }
 }
@@ -96,7 +121,7 @@ public class GameManager : MonoBehaviour
 [Serializable]
 public class ChinesePhoto
 {
-    public AnimatorController photoanime;
+    public RuntimeAnimatorController photoanime;
     public Sprite upperSprite;
     public Sprite lowerSprite;
 }
@@ -104,7 +129,7 @@ public class ChinesePhoto
 [Serializable]
 public class EnglishPhoto
 {
-    public AnimatorController photoanime;
+    public RuntimeAnimatorController photoanime;
     public Sprite upperSprite;
     public Sprite lowerSprite;
 }
