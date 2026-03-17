@@ -1,0 +1,650 @@
+fileFormatVersion: 2
+guid: 759926428b4d70f4c9e71080a1672465
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1484391196125172350
+    second: can_logos_0
+  - first:
+      213: -9040407848158371633
+    second: can_logos_1
+  - first:
+      213: -6811148161817378874
+    second: can_logos_2
+  - first:
+      213: 8091944208796229101
+    second: can_logos_3
+  - first:
+      213: 104634738090909201
+    second: can_logos_4
+  - first:
+      213: 1039913236294641817
+    second: can_logos_5
+  - first:
+      213: -7609627768166726173
+    second: can_logos_6
+  - first:
+      213: -301322530529037366
+    second: can_logos_7
+  - first:
+      213: 4414635001628087821
+    second: can_logos_8
+  - first:
+      213: 2418183341832144473
+    second: can_logos_9
+  - first:
+      213: -413570424002819274
+    second: can_logos_10
+  - first:
+      213: -3298546468661209334
+    second: can_logos_11
+  - first:
+      213: 3631467400220337069
+    second: can_logos_12
+  - first:
+      213: -2220765852446894054
+    second: can_logos_13
+  - first:
+      213: -6254959579697023863
+    second: can_logos_14
+  - first:
+      213: -8459177975374130572
+    second: can_logos_15
+  - first:
+      213: 2965573590615642154
+    second: can_logos_16
+  - first:
+      213: -7294261311600276646
+    second: can_logos_17
+  - first:
+      213: 2204714640127005810
+    second: can_logos_18
+  - first:
+      213: -3455509200225809827
+    second: can_logos_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: can_logos_0
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1240
+        width: 1512
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7212c0aded999410800000000000000
+      internalID: 1484391196125172350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_1
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 1082
+        width: 59
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc0edd1d5f40a8280800000000000000
+      internalID: -9040407848158371633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_2
+      rect:
+        serializedVersion: 2
+        x: 538
+        y: 1162
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cff15675d0f971a0800000000000000
+      internalID: -6811148161817378874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_3
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 1077
+        width: 75
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded149b826c5c4070800000000000000
+      internalID: 8091944208796229101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_4
+      rect:
+        serializedVersion: 2
+        x: 690
+        y: 1075
+        width: 59
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11e131b6dbcb37100800000000000000
+      internalID: 104634738090909201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_5
+      rect:
+        serializedVersion: 2
+        x: 778
+        y: 1170
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 998a19624938e6e00800000000000000
+      internalID: 1039913236294641817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_6
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 1106
+        width: 39
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e54975ccdb256690800000000000000
+      internalID: -7609627768166726173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_7
+      rect:
+        serializedVersion: 2
+        x: 1038
+        y: 1070
+        width: 113
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac3bef441cc71dbf0800000000000000
+      internalID: -301322530529037366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_8
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 1080
+        width: 74
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d065c0de42fe34d30800000000000000
+      internalID: 4414635001628087821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_9
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 1080
+        width: 39
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9560ca3ffec1f8120800000000000000
+      internalID: 2418183341832144473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_10
+      rect:
+        serializedVersion: 2
+        x: 925
+        y: 1090
+        width: 30
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b44bbf3e3b24af0800000000000000
+      internalID: -413570424002819274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_11
+      rect:
+        serializedVersion: 2
+        x: 962
+        y: 1083
+        width: 45
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a07545496753932d0800000000000000
+      internalID: -3298546468661209334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_12
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 35
+        width: 78
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da36b833c50956230800000000000000
+      internalID: 3631467400220337069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_13
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 33
+        width: 105
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a18d59b29314e21e0800000000000000
+      internalID: -2220765852446894054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_14
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 34
+        width: 93
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9847bb7076be139a0800000000000000
+      internalID: -6254959579697023863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_15
+      rect:
+        serializedVersion: 2
+        x: 806
+        y: 43
+        width: 37
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47254063376fa9a80800000000000000
+      internalID: -8459177975374130572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_16
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 13
+        width: 85
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a20dce7e775d72920800000000000000
+      internalID: 2965573590615642154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_17
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 36
+        width: 109
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5bc037dbf395ca90800000000000000
+      internalID: -7294261311600276646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_18
+      rect:
+        serializedVersion: 2
+        x: 1087
+        y: 24
+        width: 98
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2749fdbb848b89e10800000000000000
+      internalID: 2204714640127005810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: can_logos_19
+      rect:
+        serializedVersion: 2
+        x: 1212
+        y: 23
+        width: 54
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5a4272c0b09b00d0800000000000000
+      internalID: -3455509200225809827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      can_logos_0: 1484391196125172350
+      can_logos_1: -9040407848158371633
+      can_logos_10: -413570424002819274
+      can_logos_11: -3298546468661209334
+      can_logos_12: 3631467400220337069
+      can_logos_13: -2220765852446894054
+      can_logos_14: -6254959579697023863
+      can_logos_15: -8459177975374130572
+      can_logos_16: 2965573590615642154
+      can_logos_17: -7294261311600276646
+      can_logos_18: 2204714640127005810
+      can_logos_19: -3455509200225809827
+      can_logos_2: -6811148161817378874
+      can_logos_3: 8091944208796229101
+      can_logos_4: 104634738090909201
+      can_logos_5: 1039913236294641817
+      can_logos_6: -7609627768166726173
+      can_logos_7: -301322530529037366
+      can_logos_8: 4414635001628087821
+      can_logos_9: 2418183341832144473
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
