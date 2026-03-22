@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [Header("分數")]
 
     public int Score;
-    [SerializeField] private int[] tierScores = new int[10];
+    [SerializeField] private int[] tierScores;
 
     [Header("劇照分數門檻")]
 
@@ -29,6 +29,13 @@ public class GameManager : MonoBehaviour
     public event Action<int> OnPhotoIndexChanged;
 
     public Language CurrentLanguage { get; private set; } = Language.Chinese;
+
+    [Header("End UI")]
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject easterEggObject;
+
+    public bool IsGameWin { get; private set; }
+
 
     public enum Language
     {
@@ -43,12 +50,21 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(false);
+        }
+        if (easterEggObject != null)
+        {
+            easterEggObject.SetActive(false);
+        }
         UpdateScoreUI();
     }
 
     public void Merge(int currentTierIndex, Vector3 spawnPos, GameObject a, GameObject b)
     {
-        if (IsGameOver) return;
+        if (IsGameOver || IsGameWin) return;
+
 
         int nextTierIndex = currentTierIndex + 1;
 
@@ -93,9 +109,34 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (IsGameOver) return;
+        if (IsGameOver || IsGameWin) return;
+
         IsGameOver = true;
+
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
         Debug.Log($"Game Over! Score={Score}");
+    }
+
+    public void GameWin()
+    {
+        if (IsGameOver || IsGameWin) return;
+
+        IsGameWin = true;
+
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
+
+        if (easterEggObject != null)
+        {
+            easterEggObject.SetActive(true);
+        }
+
+        Debug.Log($"Game Win! Score={Score}");
     }
 
     private void TryAdvancePhotoIndex()
@@ -115,7 +156,13 @@ public class GameManager : MonoBehaviour
         {
             UpdateScoreUI();
         }
+
+        if (currentPhotoIndex >= photoScoreThresholds.Length)
+        {
+            GameWin();
+        }
     }
+
 }
 
 [Serializable]
