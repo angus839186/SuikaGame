@@ -17,6 +17,8 @@ public class SuikaSpawner : MonoBehaviour
     [SerializeField] private float spawnPadding = 0.3f;
     [SerializeField] private bool includeFruitRadiusInClamp = true;
 
+    [SerializeField] private float randomDropOffsetX = 0.15f;
+
     private GameObject heldFruit;
 
     public event Action<int> OnNextChanged;
@@ -132,6 +134,13 @@ public class SuikaSpawner : MonoBehaviour
         if (Time.time < nextSpawnTime) return;
         if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return;
         if (heldFruit == null) return;
+
+        float offset = UnityEngine.Random.Range(-randomDropOffsetX, randomDropOffsetX);
+        float x = ClampXForTier(heldFruit.transform.position.x + offset, currentFruitIndex);
+
+        Vector3 p = heldFruit.transform.position;
+        p.x = x;
+        heldFruit.transform.position = p;
 
         // 放開：讓 held 變 Dynamic 掉下去
         var rb = heldFruit.GetComponent<Rigidbody2D>();

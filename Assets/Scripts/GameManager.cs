@@ -169,14 +169,14 @@ public class GameManager : MonoBehaviour
 public class ChinesePhoto
 {
     public RuntimeAnimatorController photoanime;
-    public Sprite upperSprite;
-    public Sprite lowerSprite;
+
+    public Sprite backgroundSprite;
 }
 
 [Serializable]
 public class EnglishPhoto
 {
     public RuntimeAnimatorController photoanime;
-    public Sprite upperSprite;
-    public Sprite lowerSprite;
+
+    public Sprite bakcgroundSprite;
 }

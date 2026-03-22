@@ -4,11 +4,8 @@ using UnityEngine.EventSystems;
 
 public class PhotoUI : MonoBehaviour, IPointerClickHandler
 {
-    [Header("上方圖片")]
-    [SerializeField] private Image upperImage;
-
-    [Header("下方圖片")]
-    [SerializeField] private Image lowerImage;
+    [Header("背景照片")]
+    [SerializeField] private Image backgroundImage;
 
     [Header("中文版照片")]
     [SerializeField] private ChinesePhoto[] chinesePhotos;
@@ -34,7 +31,6 @@ public class PhotoUI : MonoBehaviour, IPointerClickHandler
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnPhotoIndexChanged += HandlePhotoIndexChanged;
-            HandlePhotoIndexChanged(GameManager.Instance.currentPhotoIndex);
         }
     }
 
@@ -54,8 +50,7 @@ public class PhotoUI : MonoBehaviour, IPointerClickHandler
         if (photoArrayIndex < 0) return;
 
         RuntimeAnimatorController controller = null;
-        Sprite upperSprite = null;
-        Sprite lowerSprite = null;
+        Sprite backgroundSprite = null;
 
         switch (GameManager.Instance.CurrentLanguage)
         {
@@ -64,8 +59,7 @@ public class PhotoUI : MonoBehaviour, IPointerClickHandler
 
                 ChinesePhoto chinesePhoto = chinesePhotos[photoArrayIndex];
                 controller = chinesePhoto.photoanime;
-                upperSprite = chinesePhoto.upperSprite;
-                lowerSprite = chinesePhoto.lowerSprite;
+                backgroundSprite = chinesePhoto.backgroundSprite;
                 break;
 
             case GameManager.Language.English:
@@ -73,16 +67,14 @@ public class PhotoUI : MonoBehaviour, IPointerClickHandler
 
                 EnglishPhoto englishPhoto = englishPhotos[photoArrayIndex];
                 controller = englishPhoto.photoanime;
-                upperSprite = englishPhoto.upperSprite;
-                lowerSprite = englishPhoto.lowerSprite;
+                backgroundSprite = englishPhoto.bakcgroundSprite;
                 break;
         }
 
-        if (upperImage != null)
-            upperImage.sprite = upperSprite;
-
-        if (lowerImage != null)
-            lowerImage.sprite = lowerSprite;
+        if(backgroundSprite != null)
+        {
+            backgroundImage.sprite = backgroundSprite;
+        }
 
         if (PhotoAnime != null)
         {
