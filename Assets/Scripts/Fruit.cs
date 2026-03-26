@@ -2,37 +2,56 @@ using UnityEngine;
 
 public class Fruit : MonoBehaviour
 {
+    public enum FruitState
+    {
+        Dropping,
+        InThePool
+    }
+
+    [SerializeField] private string wallLayerName = "Wall";
+
+    public FruitState State { get; private set; } = FruitState.Dropping;
+
+    public bool IsInThePool => State == FruitState.InThePool;
+
     [Range(0, 9)]
-    public int tierIndex; // A=0 ... J=9
+    public int tierIndex;
 
     private bool isMerging;
 
+    public void SetInThePool()
+    {
+        State = FruitState.InThePool;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (State == FruitState.Dropping)
+        {
+            bool hitWall = collision.collider.gameObject.layer == LayerMask.NameToLayer(wallLayerName);
+            bool hitFruit = collision.collider.GetComponent<Fruit>() != null;
+
+            if (hitWall || hitFruit)
+            {
+                SetInThePool();
+            }
+        }
+
         if (GameManager.Instance == null) return;
         if (GameManager.Instance.IsGameOver) return;
 
         var other = collision.collider.GetComponent<Fruit>();
         if (other == null) return;
 
-        // 必須相同等級才合成
         if (other.tierIndex != tierIndex) return;
-
-        // 避免重複觸發
         if (isMerging || other.isMerging) return;
-
-        // 最後一級 J 不能再合
         if (tierIndex >= 9) return;
-
-        // 只讓其中一顆執行合成（避免兩邊都跑）
         if (GetInstanceID() > other.GetInstanceID()) return;
 
         isMerging = true;
         other.isMerging = true;
 
-        // 合成位置：兩者中點（也可改用 contact point）
         Vector3 spawnPos = (transform.position + other.transform.position) * 0.5f;
-
-        GameManager.Instance.Merge(tierIndex, spawnPos, this.gameObject, other.gameObject);
+        GameManager.Instance.Merge(tierIndex, spawnPos, gameObject, other.gameObject);
     }
 }
