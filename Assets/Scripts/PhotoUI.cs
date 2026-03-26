@@ -24,6 +24,8 @@ public class PhotoUI : MonoBehaviour, IPointerClickHandler
 
     private bool isPhotoOpen;
 
+    [SerializeField] private GameObject photoUiButton;
+
 
 
     private void OnEnable()
@@ -71,7 +73,7 @@ public class PhotoUI : MonoBehaviour, IPointerClickHandler
                 break;
         }
 
-        if(backgroundSprite != null)
+        if (backgroundSprite != null)
         {
             backgroundImage.sprite = backgroundSprite;
         }
@@ -81,10 +83,11 @@ public class PhotoUI : MonoBehaviour, IPointerClickHandler
             PhotoAnime.runtimeAnimatorController = controller;
             PhotoAnime.Rebind();
             PhotoAnime.Update(0f);
-            PhotoAnime.Play(0, 0, 0f);
+            if (PhotoAnime.runtimeAnimatorController != null)
+            {
+                PhotoAnime.Play(0, 0, 0f);
+            }
         }
-
-        ShowPhoto();
     }
 
     public void ShowPhoto()
@@ -97,6 +100,7 @@ public class PhotoUI : MonoBehaviour, IPointerClickHandler
         isPhotoOpen = true;
         PhotoGroupAnime.ResetTrigger("Close");
         PhotoGroupAnime.SetTrigger("Open");
+        photoUiButton.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -106,6 +110,7 @@ public class PhotoUI : MonoBehaviour, IPointerClickHandler
         isPhotoOpen = false;
         PhotoGroupAnime.ResetTrigger("Open");
         PhotoGroupAnime.SetTrigger("Close");
+        photoUiButton.SetActive(true);
 
         if (suikaSpawner != null)
             suikaSpawner.SetSpawnEnabled(true);
