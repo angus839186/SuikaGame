@@ -15,10 +15,9 @@ public class SuikaSpawner : MonoBehaviour
     [SerializeField] private float spawnCooldown = 0.2f;
 
     [SerializeField] private float spawnPadding = 0.3f;
-    [SerializeField] private bool includeFruitRadiusInClamp = true;
 
     [SerializeField] private float randomDropOffsetX = 0.15f;
-
+    private bool includeFruitRadiusInClamp = true;
     private GameObject heldFruit;
 
     public event Action<int> OnNextChanged;
@@ -44,7 +43,7 @@ public class SuikaSpawner : MonoBehaviour
     {
         input.Enable();
         input.Gameplay.Click.started += OnPressStarted;
-        input.Gameplay.Click.canceled += OnPressCanceled; // 放開
+        input.Gameplay.Click.canceled += OnPressCanceled;
     }
 
     private void OnDisable()
@@ -56,13 +55,12 @@ public class SuikaSpawner : MonoBehaviour
 
     private void Start()
     {
-        // 先抽好 current / next
         currentFruitIndex = RollNextWeighted();
         nextFruitIndex = RollNextWeighted();
         OnNextChanged?.Invoke(nextFruitIndex);
 
         SpawnHeldFruit();
-        SnapHeldToPointerX(); // 開局就對齊一次
+        SnapHeldToPointerX();
     }
 
     private void Update()
@@ -71,14 +69,12 @@ public class SuikaSpawner : MonoBehaviour
         if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return;
         if (heldFruit == null) return;
 
-        // PC：滑鼠移動就跟著移動（不需要按住）
         if (Mouse.current != null)
         {
             SnapHeldToPointerX();
             return;
         }
 
-        // 手機：只有按住（pressing）才跟著移動
         if (Touchscreen.current != null)
         {
             if (isPressing)
@@ -86,7 +82,6 @@ public class SuikaSpawner : MonoBehaviour
             return;
         }
 
-        // 其他 Pointer（保底）：只有按住才動
         if (isPressing)
             SnapHeldToPointerX();
     }
@@ -142,7 +137,6 @@ public class SuikaSpawner : MonoBehaviour
         p.x = x;
         heldFruit.transform.position = p;
 
-        // 放開：讓 held 變 Dynamic 掉下去
         var rb = heldFruit.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -152,12 +146,10 @@ public class SuikaSpawner : MonoBehaviour
 
         heldFruit = null;
 
-        // 隊列前移：current <- next，next <- 新抽
         currentFruitIndex = nextFruitIndex;
         nextFruitIndex = RollNextWeighted();
         OnNextChanged?.Invoke(nextFruitIndex);
 
-        // 生成新的 held
         SpawnHeldFruit();
         SnapHeldToPointerX();
 
@@ -172,7 +164,6 @@ public class SuikaSpawner : MonoBehaviour
         Vector3 pos = new Vector3(clickArea.bounds.center.x, spawnY.position.y, 0f);
         heldFruit = Instantiate(prefab, pos, Quaternion.identity);
 
-        // held 不參與物理，避免碰牆/碰線抖動（最穩）
         var rb = heldFruit.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
@@ -240,7 +231,6 @@ public class SuikaSpawner : MonoBehaviour
     {
         var obj = Instantiate(fruitPrefabs[tierIndex], pos, Quaternion.identity);
 
-        // 可統一初始化
         var rb = obj.GetComponent<Rigidbody2D>();
         if (rb != null)
         {
