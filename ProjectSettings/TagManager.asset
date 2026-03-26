@@ -47,5 +47,8 @@ TagManager:
   - name: PlayGround
     uniqueID: 2192524279
     locked: 0
+  - name: Front
+    uniqueID: 2825131519
+    locked: 0
   m_RenderingLayers:
   - Default
