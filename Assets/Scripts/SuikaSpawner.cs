@@ -47,14 +47,12 @@ public class SuikaSpawner : MonoBehaviour
         input.Enable();
         input.Gameplay.Click.started += OnPressStarted;
         input.Gameplay.Click.canceled += OnPressCanceled;
-        photoAnimationController.OnPhotoOpened += SetSpawnEnabled;
     }
 
     private void OnDisable()
     {
         input.Gameplay.Click.started -= OnPressStarted;
         input.Gameplay.Click.canceled -= OnPressCanceled;
-        photoAnimationController.OnPhotoOpened -= SetSpawnEnabled;
         input.Disable();
     }
 

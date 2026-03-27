@@ -521,7 +521,7 @@ MonoBehaviour:
   currentPhotoIndex: 0
   photoScoreThresholds: 0a000000140000001e0000002800000032000000
   gameOverUI: {fileID: 1799506231}
-  easterEggObject: {fileID: 0}
+  EndingEasterEgg: {fileID: 0}
 --- !u!4 &292153102
 Transform:
   m_ObjectHideFlags: 0
@@ -773,25 +773,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fab72f2b74f4e234f804d412bd5aea60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhotoUI
-  backgroundImage: {fileID: 60830319}
-  chinesePhotos:
-  - photoanime: {fileID: 9100000, guid: 72ed29e87c1a5a04cafb4ec1dac31973, type: 2}
-    backgroundSprite: {fileID: -4023908643379145010, guid: 50c6541a5a7aad0439804f6c79c26861, type: 3}
-  - photoanime: {fileID: 9100000, guid: 050630dde73351e4ab7551418e81c577, type: 2}
-    backgroundSprite: {fileID: 4272943850842324979, guid: 73879fea01f1a174a84f15ab0e2cebb3, type: 3}
-  - photoanime: {fileID: 9100000, guid: 039350f534b673e4d93c77e7c6a54f2b, type: 2}
-    backgroundSprite: {fileID: 7439310996054455893, guid: a1c22df0dc2f8b84182e7d4066c29389, type: 3}
-  englishPhotos:
-  - photoanime: {fileID: 9100000, guid: 72ed29e87c1a5a04cafb4ec1dac31973, type: 2}
-    bakcgroundSprite: {fileID: -408842515927506599, guid: 7b77b099adf9ee14aa99ad853fb0e7c6, type: 3}
-  - photoanime: {fileID: 9100000, guid: 050630dde73351e4ab7551418e81c577, type: 2}
-    bakcgroundSprite: {fileID: 6060937163850298821, guid: 06659cbdb7244174285cf3bac47f8215, type: 3}
-  - photoanime: {fileID: 9100000, guid: 039350f534b673e4d93c77e7c6a54f2b, type: 2}
-    bakcgroundSprite: {fileID: 3017342241491024798, guid: d7fe0b7aaebc6db429c1f1108192ae46, type: 3}
-  PhotoGroupAnime: {fileID: 1890999972}
-  PhotoAnime: {fileID: 1988325085}
-  suikaSpawner: {fileID: 1603706462}
-  photoUiButton: {fileID: 765312448}
+  backgroundImage: {fileID: 0}
+  stampImage: {fileID: 0}
+  PhotoGroupAnimator: {fileID: 0}
+  PhotoAnimator: {fileID: 0}
+  TvAnimator: {fileID: 0}
+  photoUiButton: {fileID: 0}
+  photoGroups: []
+  stampObjects: []
 --- !u!1 &434525906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,7 +1537,7 @@ SpriteRenderer:
   m_SortingLayerID: 299368131
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: bec3439686a9ede458cc636833aaf584, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0f6de00098bf0074f9a3f910beaa0b6e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1568,7 +1557,7 @@ Transform:
   m_GameObject: {fileID: 854004551}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1736,9 +1725,9 @@ Transform:
   m_GameObject: {fileID: 1153864326}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 0.05, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.52, y: 0.52, z: 0.52}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 306718741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1789,12 +1778,12 @@ SpriteRenderer:
   m_SortingLayerID: 299368131
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 8e719da92ece5094bbfc6bdaef0303f5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22123b3246974604b87dec46f8369a88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.8, y: 19.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1857,7 +1846,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2559,6 +2548,7 @@ MonoBehaviour:
   spawnPadding: 0.1
   randomDropOffsetX: 0.03
   highTierPenalty: 0.06
+  photoAnimationController: {fileID: 0}
 --- !u!4 &1603706463
 Transform:
   m_ObjectHideFlags: 0
@@ -3277,7 +3267,7 @@ SpriteRenderer:
   m_SortingLayerID: 299368131
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4364034832326165938, guid: 2d7df022ee3b41542a1716d163cd070e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6cb412250ac769f45b61e74e2f198e2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

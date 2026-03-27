@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     [Header("End UI")]
     [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject easterEggObject;
+    [SerializeField] private GameObject EndingEasterEgg;
 
     public bool IsGameWin { get; private set; }
 
@@ -54,9 +54,9 @@ public class GameManager : MonoBehaviour
         {
             gameOverUI.SetActive(false);
         }
-        if (easterEggObject != null)
+        if (EndingEasterEgg != null)
         {
-            easterEggObject.SetActive(false);
+            EndingEasterEgg.SetActive(false);
         }
         UpdateScoreUI();
     }
@@ -131,9 +131,9 @@ public class GameManager : MonoBehaviour
             gameOverUI.SetActive(true);
         }
 
-        if (easterEggObject != null)
+        if (EndingEasterEgg != null)
         {
-            easterEggObject.SetActive(true);
+            EndingEasterEgg.SetActive(true);
         }
 
         Debug.Log($"Game Win! Score={Score}");
