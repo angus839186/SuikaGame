@@ -2,23 +2,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
+using UnityEngine.Events;
 
-public class PhotoAnimationController : MonoBehaviour, IPointerClickHandler
+public class PhotoAnimationController : MonoBehaviour
 {
     [Header("劇照群組")]
-    [SerializeField] private Image backgroundImage;
-
-    [SerializeField] private Image stampImage;
     [SerializeField] private Animator PhotoGroupAnimator;
-    [Header("劇照動畫")]
     [SerializeField] private Animator PhotoAnimator;
+    [SerializeField] private Image backgroundImage;
+    [SerializeField] private Image stampImage;
+
     [Header("電視")]
     [SerializeField] private Animator TvAnimator;
 
     private bool isPhotoOpen;
 
+    private bool isGameStart;
+
     public event Action<int> OnPhotoOpened;
 
+    public event Action<bool> OnPhotoToggled;
+
+    [Header("UI")]
     [SerializeField] private GameObject photoUiButton;
 
     [Header("劇照資料")]
@@ -26,17 +31,20 @@ public class PhotoAnimationController : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private Sprite[] stampObjects;
 
-    private string photoGroupAnimationParam = "PhotoIndex";
-    private string photoAnimationParam = "PhotoIndex";
-    private string tvAnimationParam = "PhotoIndex";
-
     private int currentPhotoGroupIndex = -1;
+
+    [Header("語言切換")]
+    [SerializeField] Sprite ChineseTutorial;
+    [SerializeField] Sprite EnglishTutorial;
+
+    public UnityEvent EventAfterGameStart;
 
     private void OnEnable()
     {
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnPhotoIndexChanged += HandlePhotoIndexChanged;
+            GameManager.Instance.OnLanguageChanged += HandleLanguageChanged;
         }
     }
 
@@ -45,6 +53,7 @@ public class PhotoAnimationController : MonoBehaviour, IPointerClickHandler
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnPhotoIndexChanged -= HandlePhotoIndexChanged;
+            GameManager.Instance.OnLanguageChanged -= HandleLanguageChanged;
         }
     }
 
@@ -64,30 +73,36 @@ public class PhotoAnimationController : MonoBehaviour, IPointerClickHandler
         currentPhotoGroupIndex = UnityEngine.Random.Range(0, photoGroups.Length);
         PhotoGroup selectedGroup = photoGroups[currentPhotoGroupIndex];
 
-        if (backgroundImage != null)
-        {
-            backgroundImage.sprite = GameManager.Instance.CurrentLanguage == GameManager.Language.Chinese
-                ? selectedGroup.ChineseBackground
-                : selectedGroup.EnglishBackground;
-        }
-
-        if (PhotoGroupAnimator != null)
-        {
-            PhotoGroupAnimator.SetInteger(photoGroupAnimationParam, selectedGroup.animationIndex);
-        }
+        RefreshBackground();
 
         if (PhotoAnimator != null)
         {
-            PhotoAnimator.SetInteger(photoAnimationParam, selectedGroup.animationIndex);
+            PhotoAnimator.gameObject.SetActive(true);
+            PhotoAnimator.Play(selectedGroup.animationName, -1, 0f);
         }
 
         if (TvAnimator != null)
         {
-            TvAnimator.SetInteger(tvAnimationParam, selectedGroup.animationIndex);
+            TvAnimator.Play(selectedGroup.animationName, -1, 0f);
         }
     }
 
+    private void Start()
+    {
+        RefreshBackground();
+    }
+    public void HandleLanguageButtonClick()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ToggleLanguage();
+        }
+    }
 
+    private void HandleLanguageChanged(GameManager.Language language)
+    {
+        RefreshBackground();
+    }
     public void TogglePhoto(bool toggle)
     {
         isPhotoOpen = toggle;
@@ -108,16 +123,44 @@ public class PhotoAnimationController : MonoBehaviour, IPointerClickHandler
             PhotoGroupAnimator.ResetTrigger("Open");
             PhotoGroupAnimator.SetTrigger("Close");
             photoUiButton.SetActive(true);
+            if (isGameStart == false)
+            {
+                EventAfterGameStart.Invoke();
+                isGameStart = true;
+            }
         }
+        OnPhotoToggled?.Invoke(toggle);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void RefreshBackground()
     {
-        if (isPhotoOpen)
+        if (backgroundImage == null || GameManager.Instance == null)
         {
-            TogglePhoto(false);
+            return;
         }
+
+        bool isBeforeFirstPhotoChange = currentPhotoGroupIndex < 0;
+
+        if (isBeforeFirstPhotoChange)
+        {
+            backgroundImage.sprite = GameManager.Instance.CurrentLanguage == GameManager.Language.Chinese
+                ? ChineseTutorial
+                : EnglishTutorial;
+
+            return;
+        }
+
+        if (photoGroups == null || currentPhotoGroupIndex < 0 || currentPhotoGroupIndex >= photoGroups.Length)
+        {
+            return;
+        }
+
+        PhotoGroup selectedGroup = photoGroups[currentPhotoGroupIndex];
+        backgroundImage.sprite = GameManager.Instance.CurrentLanguage == GameManager.Language.Chinese
+            ? selectedGroup.ChineseBackground
+            : selectedGroup.EnglishBackground;
     }
+
 
 
 

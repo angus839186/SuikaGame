@@ -16,23 +16,28 @@ public class GameManager : MonoBehaviour
     [Header("分數")]
 
     public int Score;
-    [SerializeField] private int[] tierScores;
 
-    [Header("劇照分數門檻")]
+    [Header("門檻")]
 
     [SerializeField]
     public int currentPhotoIndex;
     [SerializeField] private int[] photoScoreThresholds;
+    [SerializeField] private int[] tierScores;
 
     public bool IsGameOver { get; private set; }
+
+    public Action<bool> GameResult;
 
     public event Action<int> OnPhotoIndexChanged;
 
     public Language CurrentLanguage { get; private set; } = Language.Chinese;
 
+    public event Action<Language> OnLanguageChanged;
+
     [Header("End UI")]
     [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject EndingEasterEgg;
+    [SerializeField] private GameObject winEasterEgg;
+    [SerializeField] private GameObject loseEasterEgg;
 
     public bool IsGameWin { get; private set; }
 
@@ -53,10 +58,6 @@ public class GameManager : MonoBehaviour
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(false);
-        }
-        if (EndingEasterEgg != null)
-        {
-            EndingEasterEgg.SetActive(false);
         }
         UpdateScoreUI();
     }
@@ -107,36 +108,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GameOver()
+    public void ToggleGameResult(bool toggle)
     {
-        if (IsGameOver || IsGameWin) return;
-
-        IsGameOver = true;
-
-        if (gameOverUI != null)
+        if (toggle)
         {
-            gameOverUI.SetActive(true);
+            if (IsGameOver || IsGameWin) return;
+
+            IsGameWin = true;
+
+            if (gameOverUI != null)
+            {
+                gameOverUI.SetActive(true);
+            }
+
+            if (winEasterEgg != null)
+            {
+                winEasterEgg.SetActive(true);
+            }
         }
-        Debug.Log($"Game Over! Score={Score}");
-    }
-
-    public void GameWin()
-    {
-        if (IsGameOver || IsGameWin) return;
-
-        IsGameWin = true;
-
-        if (gameOverUI != null)
+        else
         {
-            gameOverUI.SetActive(true);
-        }
+            if (IsGameOver || IsGameWin) return;
 
-        if (EndingEasterEgg != null)
-        {
-            EndingEasterEgg.SetActive(true);
-        }
+            IsGameOver = true;
 
-        Debug.Log($"Game Win! Score={Score}");
+            if (gameOverUI != null)
+            {
+                gameOverUI.SetActive(true);
+            }
+            if(loseEasterEgg != null)
+            {
+                loseEasterEgg.SetActive(true);
+            }
+            Debug.Log($"Game Over! Score={Score}");
+
+        }
     }
 
     private void TryAdvancePhotoIndex()
@@ -159,24 +165,27 @@ public class GameManager : MonoBehaviour
 
         if (currentPhotoIndex >= photoScoreThresholds.Length)
         {
-            GameWin();
+            ToggleGameResult(true);
+        }
+    }
+    public void SetLanguage(Language language)
+    {
+        if (CurrentLanguage == language) return;
+
+        CurrentLanguage = language;
+        OnLanguageChanged?.Invoke(CurrentLanguage);
+    }
+
+    public void ToggleLanguage()
+    {
+        if (CurrentLanguage == Language.Chinese)
+        {
+            SetLanguage(Language.English);
+        }
+        else
+        {
+            SetLanguage(Language.Chinese);
         }
     }
 
-}
-
-[Serializable]
-public class ChinesePhoto
-{
-    public RuntimeAnimatorController photoanime;
-
-    public Sprite backgroundSprite;
-}
-
-[Serializable]
-public class EnglishPhoto
-{
-    public RuntimeAnimatorController photoanime;
-
-    public Sprite bakcgroundSprite;
 }

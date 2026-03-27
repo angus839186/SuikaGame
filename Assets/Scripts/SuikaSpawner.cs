@@ -18,7 +18,7 @@ public class SuikaSpawner : MonoBehaviour
 
     [SerializeField] private float randomDropOffsetX = 0.15f;
     private bool includeFruitRadiusInClamp = true;
-    private GameObject heldFruit;
+    public GameObject heldFruit;
 
     public event Action<int> OnNextChanged;
     private float nextSpawnTime;
@@ -31,7 +31,7 @@ public class SuikaSpawner : MonoBehaviour
     [SerializeField, Range(0f, 0.2f)]
     private float highTierPenalty = 0.06f;
 
-    private bool canSpawn = true;
+    public bool canSpawn;
 
     [SerializeField] private PhotoAnimationController photoAnimationController;
 
@@ -47,10 +47,18 @@ public class SuikaSpawner : MonoBehaviour
         input.Enable();
         input.Gameplay.Click.started += OnPressStarted;
         input.Gameplay.Click.canceled += OnPressCanceled;
+        if(photoAnimationController != null)
+        {
+            photoAnimationController.OnPhotoToggled += SetSpawnEnabled;
+        }
     }
 
     private void OnDisable()
     {
+        if(photoAnimationController != null)
+        {
+            photoAnimationController.OnPhotoToggled -= SetSpawnEnabled;
+        }
         input.Gameplay.Click.started -= OnPressStarted;
         input.Gameplay.Click.canceled -= OnPressCanceled;
         input.Disable();
@@ -64,6 +72,7 @@ public class SuikaSpawner : MonoBehaviour
 
         SpawnHeldFruit();
         SnapHeldToPointerX();
+        SetSpawnEnabled(true);
     }
 
     private void Update()
@@ -251,6 +260,7 @@ public class SuikaSpawner : MonoBehaviour
     public void SetSpawnEnabled(bool enabled)
     {
         canSpawn = !enabled;
+        heldFruit.SetActive(canSpawn);
         isPressing = false;
     }
 }

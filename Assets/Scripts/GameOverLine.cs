@@ -13,7 +13,7 @@ public class GameOverLine : MonoBehaviour
 
         if (fruit.IsInThePool)
         {
-            GameManager.Instance.GameOver();
+            GameManager.Instance.ToggleGameResult(false);
         }
     }
 }

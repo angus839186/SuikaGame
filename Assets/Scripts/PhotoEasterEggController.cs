@@ -4,7 +4,7 @@ using UnityEngine;
 public class PhotoEasterEggController : MonoBehaviour
 {
     [SerializeField] private PhotoAnimationController photoAnimationController;
-    [SerializeField] private EasterEgg[] easterEggs;
+    [SerializeField] private GameObject[] easterEggs;
 
     private void OnEnable()
     {
@@ -29,18 +29,10 @@ public class PhotoEasterEggController : MonoBehaviour
             return;
         }
 
-        EasterEgg easterEgg = easterEggs[index];
-        if (easterEgg.instance != null)
+        GameObject easterEgg = easterEggs[index];
+        if (easterEgg != null)
         {
-            easterEgg.instance.SetActive(true);
-            easterEgg.isActive = true;
+            easterEgg.SetActive(true);
         }
     }
-}
-
-[Serializable]
-public class EasterEgg
-{
-    public GameObject instance;
-    public bool isActive;
 }
