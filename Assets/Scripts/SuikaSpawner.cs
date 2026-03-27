@@ -33,10 +33,13 @@ public class SuikaSpawner : MonoBehaviour
 
     private bool canSpawn = true;
 
+    [SerializeField] private PhotoAnimationController photoAnimationController;
+
     private void Awake()
     {
         cam = Camera.main;
         input = new InputSystem_Actions();
+
     }
 
     private void OnEnable()
@@ -44,12 +47,14 @@ public class SuikaSpawner : MonoBehaviour
         input.Enable();
         input.Gameplay.Click.started += OnPressStarted;
         input.Gameplay.Click.canceled += OnPressCanceled;
+        photoAnimationController.OnPhotoOpened += SetSpawnEnabled;
     }
 
     private void OnDisable()
     {
         input.Gameplay.Click.started -= OnPressStarted;
         input.Gameplay.Click.canceled -= OnPressCanceled;
+        photoAnimationController.OnPhotoOpened -= SetSpawnEnabled;
         input.Disable();
     }
 
@@ -247,7 +252,7 @@ public class SuikaSpawner : MonoBehaviour
 
     public void SetSpawnEnabled(bool enabled)
     {
-        canSpawn = enabled;
+        canSpawn = !enabled;
         isPressing = false;
     }
 }
