@@ -5,7 +5,7 @@ public class GameOverLine : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (GameManager.Instance == null) return;
-        if (GameManager.Instance.IsGameOver || GameManager.Instance.IsGameWin) return;
+        if (GameManager.Instance.GameEnd) return;
 
 
         var fruit = other.GetComponent<Fruit>();
@@ -13,7 +13,7 @@ public class GameOverLine : MonoBehaviour
 
         if (fruit.IsInThePool)
         {
-            GameManager.Instance.ToggleGameResult(false);
+            GameManager.Instance.EndGame(false);
         }
     }
 }

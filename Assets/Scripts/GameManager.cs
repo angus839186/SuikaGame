@@ -1,52 +1,53 @@
 using System;
+using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
-
-    [SerializeField] private SuikaSpawner spawner;
-
-    public TextMeshProUGUI scoreText;
-
-    public TextMeshProUGUI photoScoreThresholdText;
-
-    [Header("分數")]
-
-    public int Score;
-
-    [Header("門檻")]
-
-    [SerializeField]
-    public int currentPhotoIndex;
-    [SerializeField] private int[] photoScoreThresholds;
-    [SerializeField] private int[] tierScores;
-
-    public bool IsGameOver { get; private set; }
-
-    public Action<bool> GameResult;
-
-    public event Action<int> OnPhotoIndexChanged;
-
-    public Language CurrentLanguage { get; private set; } = Language.Chinese;
-
-    public event Action<Language> OnLanguageChanged;
-
-    [Header("End UI")]
-    [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject winEasterEgg;
-    [SerializeField] private GameObject loseEasterEgg;
-
-    public bool IsGameWin { get; private set; }
-
-
     public enum Language
     {
         Chinese,
         English
     }
+    [Header("Reference")]
+    public static GameManager Instance { get; private set; }
+    [SerializeField] private SuikaSpawner spawner;
+
+    [Header("分數")]
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] int Score;
+
+    [Header("門檻")]
+    [SerializeField] TextMeshProUGUI photoScoreThresholdText;
+    [SerializeField] int currentPhotoIndex;
+    [SerializeField] private int[] photoScoreThresholds;
+    [SerializeField] private int[] tierScores;
+    public event Action<int> OnPhotoIndexChanged;
+
+    [Header("遊戲結束")]
+    [SerializeField] private GameObject PlayAgainButton;
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject winEasterEgg;
+    [SerializeField] private GameObject loseEasterEgg;
+
+    public bool GameEnd { get; private set; }
+
+    public bool IsGameWin { get; private set; }
+
+    public Action<bool> GameResultAction;
+
+    public Action GameEndAction;
+
+    [SerializeField] UnityEvent EventAfterGameEnd;
+
+    [Header("語言")]
+    public Language CurrentLanguage { get; private set; } = Language.Chinese;
+    public event Action<Language> OnLanguageChanged;
 
     private void Awake()
     {
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     public void Merge(int currentTierIndex, Vector3 spawnPos, GameObject a, GameObject b)
     {
-        if (IsGameOver || IsGameWin) return;
+        if (GameEnd) return;
 
 
         int nextTierIndex = currentTierIndex + 1;
@@ -108,42 +109,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ToggleGameResult(bool toggle)
+    public void EndGame(bool isWin)
     {
-        if (toggle)
-        {
-            if (IsGameOver || IsGameWin) return;
+        if (GameEnd) return;
 
-            IsGameWin = true;
-
-            if (gameOverUI != null)
-            {
-                gameOverUI.SetActive(true);
-            }
-
-            if (winEasterEgg != null)
-            {
-                winEasterEgg.SetActive(true);
-            }
-        }
-        else
-        {
-            if (IsGameOver || IsGameWin) return;
-
-            IsGameOver = true;
-
-            if (gameOverUI != null)
-            {
-                gameOverUI.SetActive(true);
-            }
-            if(loseEasterEgg != null)
-            {
-                loseEasterEgg.SetActive(true);
-            }
-            Debug.Log($"Game Over! Score={Score}");
-
-        }
+        GameEnd = true;
+        IsGameWin = isWin;
+        StartCoroutine(GameEndCoroutine(isWin));
     }
+
 
     private void TryAdvancePhotoIndex()
     {
@@ -165,7 +139,7 @@ public class GameManager : MonoBehaviour
 
         if (currentPhotoIndex >= photoScoreThresholds.Length)
         {
-            ToggleGameResult(true);
+            EndGame(true);
         }
     }
     public void SetLanguage(Language language)
@@ -185,6 +159,45 @@ public class GameManager : MonoBehaviour
         else
         {
             SetLanguage(Language.Chinese);
+        }
+    }
+
+    public void PlayAgain()
+    {
+        Scene current = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(current.buildIndex);
+    }
+
+    IEnumerator GameEndCoroutine(bool result)
+    {
+        if (gameOverUI != null)
+        {
+            gameOverUI.SetActive(true);
+        }
+        GameEndAction.Invoke();
+        ToggleEasterEgg(result);
+        Debug.Log($"Game Over! Score={Score}");
+        EventAfterGameEnd.Invoke();
+        yield return new WaitForSeconds(2f);
+        PlayAgainButton.SetActive(true);
+        yield return null;
+    }
+
+    public void ToggleEasterEgg(bool toggle)
+    {
+        if (toggle)
+        {
+            if (winEasterEgg != null)
+            {
+                winEasterEgg.SetActive(true);
+            }
+        }
+        else
+        {
+            if (loseEasterEgg != null)
+            {
+                loseEasterEgg.SetActive(true);
+            }
         }
     }
 

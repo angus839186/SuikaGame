@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
 using UnityEngine.Events;
+using System.Collections;
 
 public class PhotoAnimationController : MonoBehaviour
 {
@@ -14,10 +15,16 @@ public class PhotoAnimationController : MonoBehaviour
 
     [Header("電視")]
     [SerializeField] private Animator TvAnimator;
+    private Coroutine tvPlayCoroutine;
+    [SerializeField] private string tvLoadingAnimationName = "Loading";
+
+    [SerializeField] GameObject RedButton;
 
     private bool isPhotoOpen;
 
     private bool isGameStart;
+
+    private bool NewPhotoGroup;
 
     public event Action<int> OnPhotoOpened;
 
@@ -83,8 +90,15 @@ public class PhotoAnimationController : MonoBehaviour
 
         if (TvAnimator != null)
         {
-            TvAnimator.Play(selectedGroup.animationName, -1, 0f);
+            if (tvPlayCoroutine != null)
+            {
+                StopCoroutine(tvPlayCoroutine);
+            }
+
+            tvPlayCoroutine = StartCoroutine(PlayTvAnimationWithLoading(selectedGroup.animationName));
         }
+        NewPhotoGroup = true;
+        ToggleRedButton();
     }
 
     private void Start()
@@ -112,6 +126,8 @@ public class PhotoAnimationController : MonoBehaviour
             PhotoGroupAnimator.ResetTrigger("Close");
             PhotoGroupAnimator.SetTrigger("Open");
             photoUiButton.SetActive(false);
+            NewPhotoGroup = false;
+            ToggleRedButton();
 
             if (currentPhotoGroupIndex >= 0)
             {
@@ -129,7 +145,13 @@ public class PhotoAnimationController : MonoBehaviour
                 isGameStart = true;
             }
         }
-        OnPhotoToggled?.Invoke(toggle);
+        OnPhotoToggled?.Invoke(!toggle);
+    }
+
+    void ToggleRedButton()
+    {
+        bool opened = NewPhotoGroup;
+        RedButton.SetActive(opened);
     }
 
     private void RefreshBackground()
@@ -159,6 +181,20 @@ public class PhotoAnimationController : MonoBehaviour
         backgroundImage.sprite = GameManager.Instance.CurrentLanguage == GameManager.Language.Chinese
             ? selectedGroup.ChineseBackground
             : selectedGroup.EnglishBackground;
+    }
+
+    private IEnumerator PlayTvAnimationWithLoading(string targetAnimationName)
+    {
+        TvAnimator.Play(tvLoadingAnimationName, -1, 0f);
+        yield return null;
+
+        AnimatorStateInfo loadingStateInfo = TvAnimator.GetCurrentAnimatorStateInfo(0);
+        float loadingDuration = loadingStateInfo.length;
+
+        yield return new WaitForSeconds(loadingDuration);
+
+        TvAnimator.Play(targetAnimationName, -1, 0f);
+        tvPlayCoroutine = null;
     }
 
 

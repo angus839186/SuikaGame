@@ -38,7 +38,7 @@ public class Fruit : MonoBehaviour
         }
 
         if (GameManager.Instance == null) return;
-        if (GameManager.Instance.IsGameOver) return;
+        if (GameManager.Instance.GameEnd) return;
 
         var other = collision.collider.GetComponent<Fruit>();
         if (other == null) return;

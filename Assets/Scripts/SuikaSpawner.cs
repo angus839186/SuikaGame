@@ -49,7 +49,7 @@ public class SuikaSpawner : MonoBehaviour
         input.Gameplay.Click.canceled += OnPressCanceled;
         if(photoAnimationController != null)
         {
-            photoAnimationController.OnPhotoToggled += SetSpawnEnabled;
+            photoAnimationController.OnPhotoToggled += ToggleSpawner;
         }
     }
 
@@ -57,7 +57,7 @@ public class SuikaSpawner : MonoBehaviour
     {
         if(photoAnimationController != null)
         {
-            photoAnimationController.OnPhotoToggled -= SetSpawnEnabled;
+            photoAnimationController.OnPhotoToggled -= ToggleSpawner;
         }
         input.Gameplay.Click.started -= OnPressStarted;
         input.Gameplay.Click.canceled -= OnPressCanceled;
@@ -72,13 +72,13 @@ public class SuikaSpawner : MonoBehaviour
 
         SpawnHeldFruit();
         SnapHeldToPointerX();
-        SetSpawnEnabled(true);
+        ToggleSpawner(false);
     }
 
     private void Update()
     {
         if (!canSpawn) return;
-        if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return;
+        if (GameManager.Instance != null && GameManager.Instance.GameEnd) return;
         if (heldFruit == null) return;
 
         if (Mouse.current != null)
@@ -139,7 +139,7 @@ public class SuikaSpawner : MonoBehaviour
     private void TryDropHeldFruit()
     {
         if (Time.time < nextSpawnTime) return;
-        if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return;
+        if (GameManager.Instance != null && GameManager.Instance.GameEnd) return;
         if (heldFruit == null) return;
 
         float offset = UnityEngine.Random.Range(-randomDropOffsetX, randomDropOffsetX);
@@ -257,9 +257,9 @@ public class SuikaSpawner : MonoBehaviour
         unlockedFruitTier = Mathf.Max(unlockedFruitTier, tier);
     }
 
-    public void SetSpawnEnabled(bool enabled)
+    public void ToggleSpawner(bool toggle)
     {
-        canSpawn = !enabled;
+        canSpawn = toggle;
         heldFruit.SetActive(canSpawn);
         isPressing = false;
     }
