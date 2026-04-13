@@ -9,7 +9,5 @@ public class PhotoGroup : ScriptableObject
     public Sprite ChineseBackground;
     public Sprite EnglishBackground;
 
-    public string animationName;
-
 
 }
