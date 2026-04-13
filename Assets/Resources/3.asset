@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08bde6c4c5690e648a36c591c9e244cb, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: Assembly-CSharp::PhotoGroup
+  ChineseBackground: {fileID: -3678705666732884096, guid: f725a7ef896410f44a2fe2f98314ac97, type: 3}
+  EnglishBackground: {fileID: -3624942859927877350, guid: b1969c21de0046545b9da77ea2dca3fa, type: 3}
+  animationName: 3

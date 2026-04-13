@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 using System;
 using UnityEngine.Events;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PhotoAnimationController : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class PhotoAnimationController : MonoBehaviour
     [SerializeField] private Sprite[] stampObjects;
 
     private int currentPhotoGroupIndex = -1;
+    private List<int> remainingPhotoGroupIndices = new List<int>();
 
     [Header("語言切換")]
     [SerializeField] Sprite ChineseTutorial;
@@ -63,7 +65,11 @@ public class PhotoAnimationController : MonoBehaviour
             GameManager.Instance.OnLanguageChanged -= HandleLanguageChanged;
         }
     }
-
+    private void Start()
+    {
+        InitializeRemainingPhotoGroups();
+        RefreshBackground();
+    }
     private void HandlePhotoIndexChanged(int index)
     {
         if (stampImage != null && stampObjects != null && index >= 0 && index < stampObjects.Length)
@@ -77,7 +83,16 @@ public class PhotoAnimationController : MonoBehaviour
             return;
         }
 
-        currentPhotoGroupIndex = UnityEngine.Random.Range(0, photoGroups.Length);
+        if (remainingPhotoGroupIndices.Count == 0)
+        {
+            Debug.LogWarning("No unused photo groups left.");
+            return;
+        }
+
+        int randomPoolIndex = UnityEngine.Random.Range(0, remainingPhotoGroupIndices.Count);
+        currentPhotoGroupIndex = remainingPhotoGroupIndices[randomPoolIndex];
+        remainingPhotoGroupIndices.RemoveAt(randomPoolIndex);
+
         PhotoGroup selectedGroup = photoGroups[currentPhotoGroupIndex];
 
         RefreshBackground();
@@ -85,7 +100,7 @@ public class PhotoAnimationController : MonoBehaviour
         if (PhotoAnimator != null)
         {
             PhotoAnimator.gameObject.SetActive(true);
-            PhotoAnimator.Play(selectedGroup.animationName, -1, 0f);
+            PhotoAnimator.Play(currentPhotoGroupIndex.ToString(), -1, 0f);
         }
 
         if (TvAnimator != null)
@@ -95,16 +110,13 @@ public class PhotoAnimationController : MonoBehaviour
                 StopCoroutine(tvPlayCoroutine);
             }
 
-            tvPlayCoroutine = StartCoroutine(PlayTvAnimationWithLoading(selectedGroup.animationName));
+            tvPlayCoroutine = StartCoroutine(PlayTvAnimationWithLoading(currentPhotoGroupIndex.ToString()));
         }
         NewPhotoGroup = true;
         ToggleRedButton();
     }
 
-    private void Start()
-    {
-        RefreshBackground();
-    }
+
     public void HandleLanguageButtonClick()
     {
         if (GameManager.Instance != null)
@@ -198,6 +210,20 @@ public class PhotoAnimationController : MonoBehaviour
     }
 
 
+    private void InitializeRemainingPhotoGroups()
+    {
+        remainingPhotoGroupIndices.Clear();
+
+        if (photoGroups == null)
+        {
+            return;
+        }
+
+        for (int i = 0; i < photoGroups.Length; i++)
+        {
+            remainingPhotoGroupIndices.Add(i);
+        }
+    }
 
 
 }
