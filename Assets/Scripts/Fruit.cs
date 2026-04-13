@@ -14,6 +14,9 @@ public class Fruit : MonoBehaviour
 
     public bool IsInThePool => State == FruitState.InThePool;
 
+    [SerializeField] private AudioClip groundHitClip;
+    [SerializeField] private AudioClip fruitHitClip;
+
     [Range(0, 9)]
     public int tierIndex;
 
@@ -34,6 +37,13 @@ public class Fruit : MonoBehaviour
             if (hitWall || hitFruit)
             {
                 SetInThePool();
+                if (AudioManager.instance != null)
+                {
+                    if (hitWall)
+                        AudioManager.instance.PlaySound(fruitHitClip);
+                    else if (hitFruit)
+                        AudioManager.instance.PlaySound(groundHitClip);
+                }
             }
         }
 

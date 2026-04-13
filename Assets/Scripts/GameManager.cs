@@ -18,6 +18,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     [SerializeField] private SuikaSpawner spawner;
 
+    [SerializeField] private GameObject mergeEffectPrefab;
+
+    [SerializeField] private AudioClip mergeClip;
+
     [Header("分數")]
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] int Score;
@@ -67,11 +71,20 @@ public class GameManager : MonoBehaviour
     {
         if (GameEnd) return;
 
-
         int nextTierIndex = currentTierIndex + 1;
 
         Destroy(a);
         Destroy(b);
+
+        if (mergeEffectPrefab != null)
+        {
+            Instantiate(mergeEffectPrefab, spawnPos, Quaternion.identity);
+        }
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySound(mergeClip);
+        }
 
         GameObject newFruit = spawner.SpawnSpecific(nextTierIndex, spawnPos);
         Fruit fruit = newFruit.GetComponent<Fruit>();
@@ -79,6 +92,7 @@ public class GameManager : MonoBehaviour
         {
             fruit.SetInThePool();
         }
+
         spawner.UnlockTier(nextTierIndex);
 
         if (tierScores != null && nextTierIndex >= 0 && nextTierIndex < tierScores.Length)
@@ -87,6 +101,7 @@ public class GameManager : MonoBehaviour
         UpdateScoreUI();
         TryAdvancePhotoIndex();
     }
+
 
     public void UpdateScoreUI()
     {

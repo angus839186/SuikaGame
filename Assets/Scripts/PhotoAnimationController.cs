@@ -5,6 +5,7 @@ using System;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class PhotoAnimationController : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PhotoAnimationController : MonoBehaviour
     [SerializeField] private Animator TvAnimator;
     private Coroutine tvPlayCoroutine;
     [SerializeField] private string tvLoadingAnimationName = "Loading";
+
+    [SerializeField] private AudioClip LoadingClip;
 
     [SerializeField] GameObject RedButton;
 
@@ -39,7 +42,7 @@ public class PhotoAnimationController : MonoBehaviour
 
     [SerializeField] private Sprite[] stampObjects;
 
-    private int currentPhotoGroupIndex = -1;
+    public int currentPhotoGroupIndex = -1;
     private List<int> remainingPhotoGroupIndices = new List<int>();
 
     [Header("語言切換")]
@@ -94,13 +97,16 @@ public class PhotoAnimationController : MonoBehaviour
         remainingPhotoGroupIndices.RemoveAt(randomPoolIndex);
 
         PhotoGroup selectedGroup = photoGroups[currentPhotoGroupIndex];
+        string animationStateName = (currentPhotoGroupIndex+1).ToString();
+
+        Debug.Log(currentPhotoGroupIndex + "," + animationStateName);   
 
         RefreshBackground();
 
         if (PhotoAnimator != null)
         {
             PhotoAnimator.gameObject.SetActive(true);
-            PhotoAnimator.Play(currentPhotoGroupIndex.ToString(), -1, 0f);
+            PhotoAnimator.Play(animationStateName, -1, 0f);
         }
 
         if (TvAnimator != null)
@@ -110,8 +116,9 @@ public class PhotoAnimationController : MonoBehaviour
                 StopCoroutine(tvPlayCoroutine);
             }
 
-            tvPlayCoroutine = StartCoroutine(PlayTvAnimationWithLoading(currentPhotoGroupIndex.ToString()));
+            tvPlayCoroutine = StartCoroutine(PlayTvAnimationWithLoading(animationStateName));
         }
+
         NewPhotoGroup = true;
         ToggleRedButton();
     }
@@ -198,6 +205,7 @@ public class PhotoAnimationController : MonoBehaviour
     private IEnumerator PlayTvAnimationWithLoading(string targetAnimationName)
     {
         TvAnimator.Play(tvLoadingAnimationName, -1, 0f);
+        AudioManager.instance.PlaySound(LoadingClip);
         yield return null;
 
         AnimatorStateInfo loadingStateInfo = TvAnimator.GetCurrentAnimatorStateInfo(0);
