@@ -33,25 +33,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int[] tierScores;
     public event Action<int> OnPhotoIndexChanged;
 
-    [Header("遊戲結束")]
-    [SerializeField] private GameObject PlayAgainButton;
-    [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private GameObject winEasterEgg;
-    [SerializeField] private GameObject loseEasterEgg;
+    public bool GameEnd;
 
-    public bool GameEnd { get; private set; }
-
-    public bool IsGameWin { get; private set; }
+    public bool IsGameWin;
 
     public Action<bool> GameResultAction;
-
-    public Action GameEndAction;
 
     [SerializeField] UnityEvent EventAfterGameEnd;
 
     [Header("語言")]
     public Language CurrentLanguage { get; private set; } = Language.Chinese;
     public event Action<Language> OnLanguageChanged;
+    public AudioClip switchLanguageClip;
 
     private void Awake()
     {
@@ -60,10 +53,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (gameOverUI != null)
-        {
-            gameOverUI.SetActive(false);
-        }
         UpdateScoreUI();
     }
 
@@ -130,7 +119,9 @@ public class GameManager : MonoBehaviour
 
         GameEnd = true;
         IsGameWin = isWin;
-        StartCoroutine(GameEndCoroutine(isWin));
+
+        GameResultAction?.Invoke(IsGameWin);
+        EventAfterGameEnd?.Invoke();
     }
 
 
@@ -162,6 +153,7 @@ public class GameManager : MonoBehaviour
         if (CurrentLanguage == language) return;
 
         CurrentLanguage = language;
+        AudioManager.instance.PlaySound(switchLanguageClip);
         OnLanguageChanged?.Invoke(CurrentLanguage);
     }
 
@@ -183,37 +175,29 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(current.buildIndex);
     }
 
-    IEnumerator GameEndCoroutine(bool result)
+    [SerializeField] private bool showDebugEndGameButtons = true;
+
+    private void OnGUI()
     {
-        if (gameOverUI != null)
+        if (!showDebugEndGameButtons) return;
+        if (GameEnd) return;
+
+        const float buttonWidth = 160f;
+        const float buttonHeight = 50f;
+        const float startX = 540f;
+        const float startY = 20f;
+        const float spacingY = 10f;
+
+        if (GUI.Button(new Rect(startX, startY, buttonWidth, buttonHeight), "Test Win"))
         {
-            gameOverUI.SetActive(true);
+            EndGame(true);
         }
-        GameEndAction.Invoke();
-        ToggleEasterEgg(result);
-        Debug.Log($"Game Over! Score={Score}");
-        EventAfterGameEnd.Invoke();
-        yield return new WaitForSeconds(2f);
-        PlayAgainButton.SetActive(true);
-        yield return null;
+
+        if (GUI.Button(new Rect(startX, startY + buttonHeight + spacingY, buttonWidth, buttonHeight), "Test Lose"))
+        {
+            EndGame(false);
+        }
     }
 
-    public void ToggleEasterEgg(bool toggle)
-    {
-        if (toggle)
-        {
-            if (winEasterEgg != null)
-            {
-                winEasterEgg.SetActive(true);
-            }
-        }
-        else
-        {
-            if (loseEasterEgg != null)
-            {
-                loseEasterEgg.SetActive(true);
-            }
-        }
-    }
 
 }

@@ -10,6 +10,11 @@ public class GameLight : MonoBehaviour
 
     [SerializeField] private Light2D Light;
 
+    public void SetLight(float intensity)
+    {
+        Light.intensity = intensity;
+    }
+
     public void FadeLightIntensity(float toIntensity, float duration)
     {
         if (Light == null)

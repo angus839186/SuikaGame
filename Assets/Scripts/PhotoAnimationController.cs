@@ -77,7 +77,8 @@ public class PhotoAnimationController : MonoBehaviour
     {
         if (stampImage != null && stampObjects != null && index >= 0 && index < stampObjects.Length)
         {
-            stampImage.sprite = stampObjects[index];
+            stampImage.gameObject.SetActive(true);
+            stampImage.sprite = stampObjects[index-1];
         }
 
         if (photoGroups == null || photoGroups.Length == 0)
@@ -96,10 +97,7 @@ public class PhotoAnimationController : MonoBehaviour
         currentPhotoGroupIndex = remainingPhotoGroupIndices[randomPoolIndex];
         remainingPhotoGroupIndices.RemoveAt(randomPoolIndex);
 
-        PhotoGroup selectedGroup = photoGroups[currentPhotoGroupIndex];
-        string animationStateName = (currentPhotoGroupIndex+1).ToString();
-
-        Debug.Log(currentPhotoGroupIndex + "," + animationStateName);   
+        string animationStateName = (currentPhotoGroupIndex+1).ToString(); 
 
         RefreshBackground();
 
