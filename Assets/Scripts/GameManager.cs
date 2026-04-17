@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     [SerializeField] private SuikaSpawner spawner;
 
-    [SerializeField] private GameObject mergeEffectPrefab;
+    [SerializeField] private EffectPoolManager effectPoolManager;
 
     [SerializeField] private AudioClip mergeClip;
 
@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Application.targetFrameRate = 60;
+        if (effectPoolManager == null)
+        {
+            effectPoolManager = EffectPoolManager.Instance;
+        }
     }
 
     private void Start()
@@ -56,19 +61,19 @@ public class GameManager : MonoBehaviour
         UpdateScoreUI();
     }
 
-    public void Merge(int currentTierIndex, Vector3 spawnPos, GameObject a, GameObject b)
+    public void Merge(int currentTierIndex, Vector3 spawnPos, Fruit a, Fruit b)
     {
         if (GameEnd) return;
 
         int nextTierIndex = currentTierIndex + 1;
 
-        Destroy(a);
-        Destroy(b);
+        if (a != null) a.ReturnToPool();
+        if (b != null) b.ReturnToPool();
 
-        if (mergeEffectPrefab != null)
-        {
-            Instantiate(mergeEffectPrefab, spawnPos, Quaternion.identity);
-        }
+        // if (effectPoolManager != null)
+        // {
+        //     effectPoolManager.PlayEffect(spawnPos);
+        // }
 
         if (AudioManager.instance != null)
         {
@@ -76,7 +81,8 @@ public class GameManager : MonoBehaviour
         }
 
         GameObject newFruit = spawner.SpawnSpecific(nextTierIndex, spawnPos);
-        Fruit fruit = newFruit.GetComponent<Fruit>();
+        Fruit fruit = newFruit != null ? newFruit.GetComponent<Fruit>() : null;
+
         if (fruit != null)
         {
             fruit.SetInThePool();
@@ -90,6 +96,7 @@ public class GameManager : MonoBehaviour
         UpdateScoreUI();
         TryAdvancePhotoIndex();
     }
+
 
 
     public void UpdateScoreUI()
@@ -177,6 +184,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool showDebugEndGameButtons = true;
 
+#if UNITY_EDITOR
     private void OnGUI()
     {
         if (!showDebugEndGameButtons) return;
@@ -198,6 +206,7 @@ public class GameManager : MonoBehaviour
             EndGame(false);
         }
     }
+#endif
 
 
 }

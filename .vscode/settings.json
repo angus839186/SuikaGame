@@ -67,5 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "SuikaGame.slnx"
+    "dotnet.defaultSolution": "SuikaGame.slnx",
+    "git.ignoreLimitWarning": true
 }

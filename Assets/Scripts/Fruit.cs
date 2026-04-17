@@ -9,22 +9,95 @@ public class Fruit : MonoBehaviour
     }
 
     [SerializeField] private string wallLayerName = "Wall";
-
-    public FruitState State { get; private set; } = FruitState.Dropping;
-
-    public bool IsInThePool => State == FruitState.InThePool;
-
     [SerializeField] private AudioClip groundHitClip;
     [SerializeField] private AudioClip fruitHitClip;
 
     [Range(0, 9)]
     public int tierIndex;
 
+    public FruitState State { get; private set; } = FruitState.Dropping;
+    public bool IsInThePool => State == FruitState.InThePool;
+
+    public int PoolTierIndex { get; private set; }
+
     private bool isMerging;
+    private Rigidbody2D rb;
+    private FruitPoolManager poolManager;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    public void SetPool(FruitPoolManager manager, int poolTierIndex)
+    {
+        poolManager = manager;
+        PoolTierIndex = poolTierIndex;
+    }
+
+    public void ResetAsHeld(Vector3 position)
+    {
+        isMerging = false;
+        State = FruitState.Dropping;
+
+        transform.position = position;
+        transform.rotation = Quaternion.identity;
+        gameObject.SetActive(true);
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.simulated = false;
+        }
+    }
+
+    public void ResetAsDropped(Vector3 position, bool useContinuousCollision = false)
+    {
+        isMerging = false;
+        State = FruitState.Dropping;
+
+        transform.position = position;
+        transform.rotation = Quaternion.identity;
+        gameObject.SetActive(true);
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.simulated = true;
+            rb.collisionDetectionMode = useContinuousCollision
+                ? CollisionDetectionMode2D.Continuous
+                : CollisionDetectionMode2D.Discrete;
+        }
+    }
 
     public void SetInThePool()
     {
         State = FruitState.InThePool;
+    }
+
+    public void ReturnToPool()
+    {
+        isMerging = false;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.angularVelocity = 0f;
+            rb.simulated = false;
+        }
+
+        if (poolManager != null)
+        {
+            poolManager.ReturnFruit(this);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -32,16 +105,18 @@ public class Fruit : MonoBehaviour
         if (State == FruitState.Dropping)
         {
             bool hitWall = collision.collider.gameObject.layer == LayerMask.NameToLayer(wallLayerName);
-            bool hitFruit = collision.collider.GetComponent<Fruit>() != null;
+            Fruit otherFruitForHit = collision.collider.GetComponent<Fruit>();
+            bool hitFruit = otherFruitForHit != null;
 
             if (hitWall || hitFruit)
             {
                 SetInThePool();
+
                 if (AudioManager.instance != null)
                 {
                     if (hitWall)
                         AudioManager.instance.PlaySound(fruitHitClip);
-                    else if (hitFruit)
+                    else
                         AudioManager.instance.PlaySound(groundHitClip);
                 }
             }
@@ -50,7 +125,7 @@ public class Fruit : MonoBehaviour
         if (GameManager.Instance == null) return;
         if (GameManager.Instance.GameEnd) return;
 
-        var other = collision.collider.GetComponent<Fruit>();
+        Fruit other = collision.collider.GetComponent<Fruit>();
         if (other == null) return;
 
         if (other.tierIndex != tierIndex) return;
@@ -62,6 +137,6 @@ public class Fruit : MonoBehaviour
         other.isMerging = true;
 
         Vector3 spawnPos = (transform.position + other.transform.position) * 0.5f;
-        GameManager.Instance.Merge(tierIndex, spawnPos, gameObject, other.gameObject);
+        GameManager.Instance.Merge(tierIndex, spawnPos, this, other);
     }
 }

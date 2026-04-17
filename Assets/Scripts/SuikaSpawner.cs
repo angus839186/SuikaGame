@@ -18,7 +18,9 @@ public class SuikaSpawner : MonoBehaviour
 
     [SerializeField] private float randomDropOffsetX = 0.15f;
     private bool includeFruitRadiusInClamp = true;
-    public GameObject heldFruit;
+    public Fruit heldFruit;
+
+    [SerializeField] private FruitPoolManager fruitPoolManager;
 
     public event Action<int> OnNextChanged;
     private float nextSpawnTime;
@@ -40,14 +42,19 @@ public class SuikaSpawner : MonoBehaviour
         cam = Camera.main;
         input = new InputSystem_Actions();
 
+        if (fruitPoolManager == null)
+        {
+            fruitPoolManager = FruitPoolManager.Instance;
+        }
     }
+
 
     private void OnEnable()
     {
         input.Enable();
         input.Gameplay.Click.started += OnPressStarted;
         input.Gameplay.Click.canceled += OnPressCanceled;
-        if(photoAnimationController != null)
+        if (photoAnimationController != null)
         {
             photoAnimationController.OnPhotoToggled += ToggleSpawner;
         }
@@ -55,7 +62,7 @@ public class SuikaSpawner : MonoBehaviour
 
     private void OnDisable()
     {
-        if(photoAnimationController != null)
+        if (photoAnimationController != null)
         {
             photoAnimationController.OnPhotoToggled -= ToggleSpawner;
         }
@@ -149,12 +156,7 @@ public class SuikaSpawner : MonoBehaviour
         p.x = x;
         heldFruit.transform.position = p;
 
-        var rb = heldFruit.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.simulated = true;
-            rb.bodyType = RigidbodyType2D.Dynamic;
-        }
+        heldFruit.ResetAsDropped(heldFruit.transform.position, false);
 
         heldFruit = null;
 
@@ -168,26 +170,43 @@ public class SuikaSpawner : MonoBehaviour
         nextSpawnTime = Time.time + spawnCooldown;
     }
 
+
+    public GameObject SpawnSpecific(int tierIndex, Vector3 pos)
+    {
+        if (fruitPoolManager == null)
+        {
+            Debug.LogError("FruitPoolManager is not assigned.");
+            return null;
+        }
+
+        Fruit fruit = fruitPoolManager.GetFruit(tierIndex, pos);
+        if (fruit == null) return null;
+
+        fruit.ResetAsDropped(pos, false);
+        return fruit.gameObject;
+    }
+
     private void SpawnHeldFruit()
     {
-        var prefab = fruitPrefabs[currentFruitIndex];
-        if (prefab == null) return;
+        if (fruitPoolManager == null)
+        {
+            Debug.LogError("FruitPoolManager is not assigned.");
+            return;
+        }
 
         Vector3 pos = new Vector3(clickArea.bounds.center.x, spawnY.position.y, 0f);
-        heldFruit = Instantiate(prefab, pos, Quaternion.identity);
+        heldFruit = fruitPoolManager.GetFruit(currentFruitIndex, pos);
 
-        var rb = heldFruit.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-            rb.bodyType = RigidbodyType2D.Kinematic;
-            rb.simulated = false;
-        }
+        if (heldFruit == null) return;
+
+        heldFruit.ResetAsHeld(pos);
     }
+
 
     private void SnapHeldToPointerX()
     {
+        if (heldFruit == null) return;
+
         Vector2 screenPos = input.Gameplay.Point.ReadValue<Vector2>();
         Vector3 world = cam.ScreenToWorldPoint(screenPos);
         world.z = 0f;
@@ -199,6 +218,7 @@ public class SuikaSpawner : MonoBehaviour
         p.y = spawnY.position.y;
         heldFruit.transform.position = p;
     }
+
 
     private float ClampXForTier(float rawX, int tierIndex)
     {
@@ -239,19 +259,6 @@ public class SuikaSpawner : MonoBehaviour
         return n - 1;
     }
 
-    public GameObject SpawnSpecific(int tierIndex, Vector3 pos)
-    {
-        var obj = Instantiate(fruitPrefabs[tierIndex], pos, Quaternion.identity);
-
-        var rb = obj.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        }
-
-        return obj;
-    }
-
     public void UnlockTier(int tier)
     {
         unlockedFruitTier = Mathf.Max(unlockedFruitTier, tier);
@@ -260,7 +267,13 @@ public class SuikaSpawner : MonoBehaviour
     public void ToggleSpawner(bool toggle)
     {
         canSpawn = toggle;
-        heldFruit.SetActive(canSpawn);
+
+        if (heldFruit != null)
+        {
+            heldFruit.gameObject.SetActive(canSpawn);
+        }
+
         isPressing = false;
     }
+
 }

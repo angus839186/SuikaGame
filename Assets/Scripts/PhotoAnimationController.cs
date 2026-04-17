@@ -15,6 +15,9 @@ public class PhotoAnimationController : MonoBehaviour
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Image stampImage;
 
+    [SerializeField] private AudioClip photoGroupOpenClip;
+    [SerializeField] private AudioClip photoGroupCloseClip;
+
     [Header("電視")]
     [SerializeField] private Animator TvAnimator;
     private Coroutine tvPlayCoroutine;
@@ -144,6 +147,7 @@ public class PhotoAnimationController : MonoBehaviour
             PhotoGroupAnimator.SetTrigger("Open");
             photoUiButton.SetActive(false);
             NewPhotoGroup = false;
+            AudioManager.instance.PlaySound(photoGroupOpenClip);
             ToggleRedButton();
 
             if (currentPhotoGroupIndex >= 0)
@@ -155,6 +159,7 @@ public class PhotoAnimationController : MonoBehaviour
         {
             PhotoGroupAnimator.ResetTrigger("Open");
             PhotoGroupAnimator.SetTrigger("Close");
+            AudioManager.instance.PlaySound(photoGroupCloseClip);
             photoUiButton.SetActive(true);
             if (isGameStart == false)
             {
