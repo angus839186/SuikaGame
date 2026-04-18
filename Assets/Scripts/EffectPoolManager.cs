@@ -21,7 +21,7 @@ public class EffectPoolManager : MonoBehaviour
             return;
         }
 
-        InitializePool();
+        //InitializePool();
     }
 
     private void InitializePool()
