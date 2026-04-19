@@ -13,7 +13,6 @@ public class PhotoAnimationController : MonoBehaviour
     [SerializeField] private Animator PhotoAnimator;
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Image stampImage;
-    [SerializeField] private VideoPlayer photoVideoPlayer;
 
 
     [SerializeField] private AudioClip photoGroupOpenClip;
@@ -106,7 +105,6 @@ public class PhotoAnimationController : MonoBehaviour
         string animationStateName = (currentPhotoGroupIndex + 1).ToString();
 
         RefreshBackground();
-        RefreshVideo();
 
         // if (PhotoAnimator != null)
         // {
@@ -178,32 +176,6 @@ public class PhotoAnimationController : MonoBehaviour
     {
         bool opened = NewPhotoGroup;
         RedButton.SetActive(opened);
-    }
-
-    private void RefreshVideo()
-    {
-        if (photoVideoPlayer == null)
-        {
-            return;
-        }
-
-        if (photoGroups == null || currentPhotoGroupIndex < 0 || currentPhotoGroupIndex >= photoGroups.Length)
-        {
-            photoVideoPlayer.Stop();
-            photoVideoPlayer.clip = null;
-            return;
-        }
-
-        PhotoGroup selectedGroup = photoGroups[currentPhotoGroupIndex];
-        photoVideoPlayer.Stop();
-        photoVideoPlayer.clip = selectedGroup.videoClip;
-
-        if (selectedGroup.videoClip != null)
-        {
-            photoVideoPlayer.time = 0;
-            photoVideoPlayer.Prepare();
-            photoVideoPlayer.Play();
-        }
     }
 
 
