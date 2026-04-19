@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEngine.Video;
 
 public class PhotoAnimationController : MonoBehaviour
 {
@@ -14,6 +13,8 @@ public class PhotoAnimationController : MonoBehaviour
     [SerializeField] private Animator PhotoAnimator;
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Image stampImage;
+    [SerializeField] private VideoPlayer photoVideoPlayer;
+
 
     [SerializeField] private AudioClip photoGroupOpenClip;
     [SerializeField] private AudioClip photoGroupCloseClip;
@@ -32,6 +33,9 @@ public class PhotoAnimationController : MonoBehaviour
     private bool isGameStart;
 
     private bool NewPhotoGroup;
+
+    [SerializeField] private bool playVideoOnPhotoChange = true;
+
 
     public event Action<int> OnPhotoOpened;
 
@@ -81,44 +85,44 @@ public class PhotoAnimationController : MonoBehaviour
         if (stampImage != null && stampObjects != null && index >= 0 && index < stampObjects.Length)
         {
             stampImage.gameObject.SetActive(true);
-            stampImage.sprite = stampObjects[index-1];
+            stampImage.sprite = stampObjects[index - 1];
         }
 
-        if (photoGroups == null || photoGroups.Length == 0)
-        {
-            Debug.LogWarning("Photo groups not assigned.");
-            return;
-        }
+        // if (photoGroups == null || photoGroups.Length == 0)
+        // {
+        //     Debug.LogWarning("Photo groups not assigned.");
+        //     return;
+        // }
 
-        if (remainingPhotoGroupIndices.Count == 0)
-        {
-            Debug.LogWarning("No unused photo groups left.");
-            return;
-        }
+        // if (remainingPhotoGroupIndices.Count == 0)
+        // {
+        //     Debug.LogWarning("No unused photo groups left.");
+        //     return;
+        // }
 
         int randomPoolIndex = UnityEngine.Random.Range(0, remainingPhotoGroupIndices.Count);
         currentPhotoGroupIndex = remainingPhotoGroupIndices[randomPoolIndex];
         remainingPhotoGroupIndices.RemoveAt(randomPoolIndex);
-
-        string animationStateName = (currentPhotoGroupIndex+1).ToString(); 
+        string animationStateName = (currentPhotoGroupIndex + 1).ToString();
 
         RefreshBackground();
+        RefreshVideo();
 
-        if (PhotoAnimator != null)
-        {
-            PhotoAnimator.gameObject.SetActive(true);
-            PhotoAnimator.Play(animationStateName, -1, 0f);
-        }
+        // if (PhotoAnimator != null)
+        // {
+        //     PhotoAnimator.gameObject.SetActive(true);
+        //     PhotoAnimator.Play(animationStateName, -1, 0f);
+        // }
 
-        if (TvAnimator != null)
-        {
-            if (tvPlayCoroutine != null)
-            {
-                StopCoroutine(tvPlayCoroutine);
-            }
+        // if (TvAnimator != null)
+        // {
+        //     if (tvPlayCoroutine != null)
+        //     {
+        //         StopCoroutine(tvPlayCoroutine);
+        //     }
 
-            tvPlayCoroutine = StartCoroutine(PlayTvAnimationWithLoading(animationStateName));
-        }
+        //     tvPlayCoroutine = StartCoroutine(PlayTvAnimationWithLoading(animationStateName));
+        // }
 
         NewPhotoGroup = true;
         ToggleRedButton();
@@ -176,6 +180,33 @@ public class PhotoAnimationController : MonoBehaviour
         RedButton.SetActive(opened);
     }
 
+    private void RefreshVideo()
+    {
+        if (photoVideoPlayer == null)
+        {
+            return;
+        }
+
+        if (photoGroups == null || currentPhotoGroupIndex < 0 || currentPhotoGroupIndex >= photoGroups.Length)
+        {
+            photoVideoPlayer.Stop();
+            photoVideoPlayer.clip = null;
+            return;
+        }
+
+        PhotoGroup selectedGroup = photoGroups[currentPhotoGroupIndex];
+        photoVideoPlayer.Stop();
+        photoVideoPlayer.clip = selectedGroup.videoClip;
+
+        if (selectedGroup.videoClip != null)
+        {
+            photoVideoPlayer.time = 0;
+            photoVideoPlayer.Prepare();
+            photoVideoPlayer.Play();
+        }
+    }
+
+
     private void RefreshBackground()
     {
         if (backgroundImage == null || GameManager.Instance == null)
@@ -205,20 +236,20 @@ public class PhotoAnimationController : MonoBehaviour
             : selectedGroup.EnglishBackground;
     }
 
-    private IEnumerator PlayTvAnimationWithLoading(string targetAnimationName)
-    {
-        TvAnimator.Play(tvLoadingAnimationName, -1, 0f);
-        AudioManager.instance.PlaySound(LoadingClip);
-        yield return null;
+    // private IEnumerator PlayTvAnimationWithLoading(string targetAnimationName)
+    // {
+    //     TvAnimator.Play(tvLoadingAnimationName, -1, 0f);
+    //     AudioManager.instance.PlaySound(LoadingClip);
+    //     yield return null;
 
-        AnimatorStateInfo loadingStateInfo = TvAnimator.GetCurrentAnimatorStateInfo(0);
-        float loadingDuration = loadingStateInfo.length;
+    //     AnimatorStateInfo loadingStateInfo = TvAnimator.GetCurrentAnimatorStateInfo(0);
+    //     float loadingDuration = loadingStateInfo.length;
 
-        yield return new WaitForSeconds(loadingDuration);
+    //     yield return new WaitForSeconds(loadingDuration);
 
-        TvAnimator.Play(targetAnimationName, -1, 0f);
-        tvPlayCoroutine = null;
-    }
+    //     TvAnimator.Play(targetAnimationName, -1, 0f);
+    //     tvPlayCoroutine = null;
+    // }
 
 
     private void InitializeRemainingPhotoGroups()
