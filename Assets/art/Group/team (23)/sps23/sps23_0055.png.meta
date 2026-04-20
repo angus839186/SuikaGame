@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: 3488757672347200753
     second: sps23_0055_2
+  - first:
+      213: -2003371582196439145
+    second: sps23_0055_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -123,9 +126,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 31
-        y: 44
+        y: 89
         width: 36
-        height: 58
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,10 +147,10 @@ TextureImporter:
       name: sps23_0055_1
       rect:
         serializedVersion: 2
-        x: 31
-        y: 33
-        width: 37
-        height: 11
+        x: 70
+        y: 32
+        width: 43
+        height: 59
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,10 +169,10 @@ TextureImporter:
       name: sps23_0055_2
       rect:
         serializedVersion: 2
-        x: 66
-        y: 32
+        x: 26
+        y: 50
         width: 47
-        height: 61
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -180,6 +183,28 @@ TextureImporter:
       bones: []
       spriteID: 1fc6ca76e9e8a6030800000000000000
       internalID: 3488757672347200753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps23_0055_3
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 33
+        width: 37
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 797a11a09289234e0800000000000000
+      internalID: -2003371582196439145
       vertices: []
       indices: 
       edges: []
@@ -201,6 +226,7 @@ TextureImporter:
       sps23_0055_0: -7113939703899037630
       sps23_0055_1: 1457894544167299944
       sps23_0055_2: 3488757672347200753
+      sps23_0055_3: -2003371582196439145
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 169699149243955669
     second: sps10_0118_0
+  - first:
+      213: 1483267609977793703
+    second: sps10_0118_1
+  - first:
+      213: 439060234736744531
+    second: sps10_0118_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,10 +122,10 @@ TextureImporter:
       name: sps10_0118_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 11
-        width: 95
-        height: 78
+        x: 14
+        y: 27
+        width: 27
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +136,50 @@ TextureImporter:
       bones: []
       spriteID: 5d93f552a74ea5200800000000000000
       internalID: 169699149243955669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps10_0118_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 11
+        width: 68
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7aca1975800a59410800000000000000
+      internalID: 1483267609977793703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps10_0118_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 5
+        width: 76
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 358bb7e05fad71600800000000000000
+      internalID: 439060234736744531
       vertices: []
       indices: 
       edges: []
@@ -149,6 +199,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       sps10_0118_0: 169699149243955669
+      sps10_0118_1: 1483267609977793703
+      sps10_0118_2: 439060234736744531
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

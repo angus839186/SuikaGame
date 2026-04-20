@@ -116,10 +116,10 @@ TextureImporter:
       name: sps6_0120_0
       rect:
         serializedVersion: 2
-        x: 106
-        y: 27
-        width: 41
-        height: 47
+        x: 0
+        y: 0
+        width: 171
+        height: 102
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

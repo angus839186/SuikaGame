@@ -5,6 +5,15 @@ TextureImporter:
   - first:
       213: 94573569033413563
     second: sps31_0242_0
+  - first:
+      213: -9000308856293445392
+    second: sps31_0242_1
+  - first:
+      213: 4097367599210423593
+    second: sps31_0242_2
+  - first:
+      213: 2960226887217471066
+    second: sps31_0242_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,10 +125,10 @@ TextureImporter:
       name: sps31_0242_0
       rect:
         serializedVersion: 2
-        x: 14
-        y: 2
-        width: 58
-        height: 61
+        x: 6
+        y: 65
+        width: 15
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +139,72 @@ TextureImporter:
       bones: []
       spriteID: bb3a063f82eff4100800000000000000
       internalID: 94573569033413563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps31_0242_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 67
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f0b3d7e7ca781380800000000000000
+      internalID: -9000308856293445392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps31_0242_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 20
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 925e1296f16ccd830800000000000000
+      internalID: 4097367599210423593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps31_0242_3
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 11
+        width: 48
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5e58238ba6d41920800000000000000
+      internalID: 2960226887217471066
       vertices: []
       indices: 
       edges: []
@@ -149,6 +224,9 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       sps31_0242_0: 94573569033413563
+      sps31_0242_1: -9000308856293445392
+      sps31_0242_2: 4097367599210423593
+      sps31_0242_3: 2960226887217471066
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

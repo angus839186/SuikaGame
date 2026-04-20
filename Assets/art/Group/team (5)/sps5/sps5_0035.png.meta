@@ -5,9 +5,6 @@ TextureImporter:
   - first:
       213: 3830088026650871140
     second: sps5_0035_0
-  - first:
-      213: -953157597311586673
-    second: sps5_0035_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,10 +116,10 @@ TextureImporter:
       name: sps5_0035_0
       rect:
         serializedVersion: 2
-        x: 97
-        y: 28
-        width: 65
-        height: 84
+        x: 43
+        y: 66
+        width: 50
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,28 +130,6 @@ TextureImporter:
       bones: []
       spriteID: 465800f74c4372530800000000000000
       internalID: 3830088026650871140
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: sps5_0035_1
-      rect:
-        serializedVersion: 2
-        x: 125
-        y: 8
-        width: 17
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f8e274d1734b5c2f0800000000000000
-      internalID: -953157597311586673
       vertices: []
       indices: 
       edges: []
@@ -174,7 +149,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       sps5_0035_0: 3830088026650871140
-      sps5_0035_1: -953157597311586673
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

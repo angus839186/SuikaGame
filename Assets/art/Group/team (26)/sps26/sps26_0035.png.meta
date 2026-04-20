@@ -8,6 +8,12 @@ TextureImporter:
   - first:
       213: 1708179951104152263
     second: sps26_0035_1
+  - first:
+      213: -2793987811815249346
+    second: sps26_0035_2
+  - first:
+      213: 7692609038620346611
+    second: sps26_0035_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,10 +125,10 @@ TextureImporter:
       name: sps26_0035_0
       rect:
         serializedVersion: 2
-        x: 507
-        y: 88
-        width: 8
-        height: 12
+        x: 500
+        y: 90
+        width: 10
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +147,10 @@ TextureImporter:
       name: sps26_0035_1
       rect:
         serializedVersion: 2
-        x: 514
-        y: 79
-        width: 92
-        height: 42
+        x: 503
+        y: 86
+        width: 15
+        height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,6 +161,50 @@ TextureImporter:
       bones: []
       spriteID: 7c2d10e7d9ca4b710800000000000000
       internalID: 1708179951104152263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps26_0035_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 79
+        width: 84
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3a2bf963e2c939d0800000000000000
+      internalID: -2793987811815249346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps26_0035_3
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 81
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f8cce6d923a1ca60800000000000000
+      internalID: 7692609038620346611
       vertices: []
       indices: 
       edges: []
@@ -175,6 +225,8 @@ TextureImporter:
     nameFileIdTable:
       sps26_0035_0: 9008519486378657765
       sps26_0035_1: 1708179951104152263
+      sps26_0035_2: -2793987811815249346
+      sps26_0035_3: 7692609038620346611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

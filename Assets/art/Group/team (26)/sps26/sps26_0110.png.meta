@@ -5,6 +5,18 @@ TextureImporter:
   - first:
       213: 4184534440717322512
     second: sps26_0110_0
+  - first:
+      213: 4922819345291317606
+    second: sps26_0110_1
+  - first:
+      213: 5750716476362223558
+    second: sps26_0110_2
+  - first:
+      213: 3295443586555868857
+    second: sps26_0110_3
+  - first:
+      213: -5002154455504309051
+    second: sps26_0110_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,10 +128,10 @@ TextureImporter:
       name: sps26_0110_0
       rect:
         serializedVersion: 2
-        x: 498
-        y: 78
-        width: 88
-        height: 46
+        x: 44
+        y: 33
+        width: 11
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +142,94 @@ TextureImporter:
       bones: []
       spriteID: 019085937e3721a30800000000000000
       internalID: 4184534440717322512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps26_0110_1
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 40
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6619281cc1e515440800000000000000
+      internalID: 4922819345291317606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps26_0110_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 37
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cf6e89aa26aecf40800000000000000
+      internalID: 5750716476362223558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps26_0110_3
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 31
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b670026b74cbbd20800000000000000
+      internalID: 3295443586555868857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps26_0110_4
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 14
+        width: 23
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c437087607c49ab0800000000000000
+      internalID: -5002154455504309051
       vertices: []
       indices: 
       edges: []
@@ -149,6 +249,10 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       sps26_0110_0: 4184534440717322512
+      sps26_0110_1: 4922819345291317606
+      sps26_0110_2: 5750716476362223558
+      sps26_0110_3: 3295443586555868857
+      sps26_0110_4: -5002154455504309051
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

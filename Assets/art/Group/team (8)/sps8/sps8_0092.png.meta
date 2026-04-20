@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: -6365815239008923086
     second: sps8_0092_1
+  - first:
+      213: 3118950505272064744
+    second: sps8_0092_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,10 +122,10 @@ TextureImporter:
       name: sps8_0092_0
       rect:
         serializedVersion: 2
-        x: 81
-        y: 37
-        width: 50
-        height: 56
+        x: 24
+        y: 27
+        width: 56
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +144,10 @@ TextureImporter:
       name: sps8_0092_1
       rect:
         serializedVersion: 2
-        x: 130
-        y: 44
-        width: 55
-        height: 17
+        x: 79
+        y: 26
+        width: 27
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,6 +158,28 @@ TextureImporter:
       bones: []
       spriteID: 232da1584c418a7a0800000000000000
       internalID: -6365815239008923086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps8_0092_2
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 37
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ea34caa5fcb84b20800000000000000
+      internalID: 3118950505272064744
       vertices: []
       indices: 
       edges: []
@@ -175,6 +200,7 @@ TextureImporter:
     nameFileIdTable:
       sps8_0092_0: -8854435096922507476
       sps8_0092_1: -6365815239008923086
+      sps8_0092_2: 3118950505272064744
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

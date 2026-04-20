@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 3877071185442029454
     second: sps13_0088_0
+  - first:
+      213: -8068228777034829355
+    second: sps13_0088_1
+  - first:
+      213: 872234825606324781
+    second: sps13_0088_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,10 +122,10 @@ TextureImporter:
       name: sps13_0088_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 19
-        width: 96
-        height: 76
+        x: 36
+        y: 79
+        width: 18
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +136,50 @@ TextureImporter:
       bones: []
       spriteID: e8fbc2993bf1ec530800000000000000
       internalID: 3877071185442029454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps13_0088_1
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 91
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d13142bca4e70090800000000000000
+      internalID: -8068228777034829355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps13_0088_2
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 15
+        width: 96
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d226dfcd3fcca1c00800000000000000
+      internalID: 872234825606324781
       vertices: []
       indices: 
       edges: []
@@ -149,6 +199,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       sps13_0088_0: 3877071185442029454
+      sps13_0088_1: -8068228777034829355
+      sps13_0088_2: 872234825606324781
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

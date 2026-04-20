@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: -3228110916882540482
     second: sps26_0096_0
+  - first:
+      213: 2727446421175638694
+    second: sps26_0096_1
+  - first:
+      213: 6988379306714562812
+    second: sps26_0096_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,10 +122,10 @@ TextureImporter:
       name: sps26_0096_0
       rect:
         serializedVersion: 2
-        x: 499
-        y: 79
-        width: 87
-        height: 45
+        x: 0
+        y: 40
+        width: 7
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +136,50 @@ TextureImporter:
       bones: []
       spriteID: e38d7af69327333d0800000000000000
       internalID: -3228110916882540482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps26_0096_1
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 43
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aa9516c116d9d520800000000000000
+      internalID: 2727446421175638694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps26_0096_2
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 30
+        width: 88
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf0896414f5bbf060800000000000000
+      internalID: 6988379306714562812
       vertices: []
       indices: 
       edges: []
@@ -149,6 +199,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       sps26_0096_0: -3228110916882540482
+      sps26_0096_1: 2727446421175638694
+      sps26_0096_2: 6988379306714562812
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
