@@ -141,10 +141,10 @@ TextureImporter:
       name: sps31_0004_1
       rect:
         serializedVersion: 2
-        x: 18
-        y: 4
-        width: 53
-        height: 63
+        x: 21
+        y: 9
+        width: 47
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
