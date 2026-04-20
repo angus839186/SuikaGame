@@ -116,9 +116,9 @@ TextureImporter:
       name: sps7_0045_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 20
-        width: 195
+        x: 368
+        y: 21
+        width: 182
         height: 104
       alignment: 0
       pivot: {x: 0, y: 0}

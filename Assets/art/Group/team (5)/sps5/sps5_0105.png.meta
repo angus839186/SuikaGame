@@ -119,10 +119,10 @@ TextureImporter:
       name: sps5_0105_0
       rect:
         serializedVersion: 2
-        x: 97
-        y: 28
-        width: 65
-        height: 84
+        x: 22
+        y: 63
+        width: 93
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: sps5_0105_1
       rect:
         serializedVersion: 2
-        x: 137
-        y: 11
-        width: 29
-        height: 23
+        x: 98
+        y: 145
+        width: 11
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
