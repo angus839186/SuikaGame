@@ -121,7 +121,7 @@ TextureImporter:
         serializedVersion: 2
         x: 6
         y: 2
-        width: 39
+        width: 55
         height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -141,10 +141,10 @@ TextureImporter:
       name: sps28_0015_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 3
-        width: 67
-        height: 11
+        x: 59
+        y: 4
+        width: 44
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
