@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08bde6c4c5690e648a36c591c9e244cb, type: 3}
   m_Name: 30
   m_EditorClassIdentifier: Assembly-CSharp::PhotoGroup
-  ChineseBackground: {fileID: 2281693583029429859, guid: 4b6d072349288c54f999fb929b4ea37a, type: 3}
-  EnglishBackground: {fileID: -4530081863396852908, guid: a5975beabcfae3648b9da66c4a61d628, type: 3}
-  animationName: 30
+  ChineseBackground: {fileID: 21300000, guid: 4b6d072349288c54f999fb929b4ea37a, type: 3}
+  EnglishBackground: {fileID: 21300000, guid: a5975beabcfae3648b9da66c4a61d628, type: 3}

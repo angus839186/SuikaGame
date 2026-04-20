@@ -182,12 +182,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(current.buildIndex);
     }
 
-    [SerializeField] private bool showDebugEndGameButtons = true;
-
 #if UNITY_EDITOR
     private void OnGUI()
     {
-        if (!showDebugEndGameButtons) return;
         if (GameEnd) return;
 
         const float buttonWidth = 160f;
