@@ -5,6 +5,12 @@ TextureImporter:
   - first:
       213: 6380385616492576356
     second: sps10_0114_0
+  - first:
+      213: -6549205428879834992
+    second: sps10_0114_1
+  - first:
+      213: -5282304843817517703
+    second: sps10_0114_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,10 +122,10 @@ TextureImporter:
       name: sps10_0114_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 11
-        width: 95
-        height: 78
+        x: 14
+        y: 27
+        width: 27
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,6 +136,50 @@ TextureImporter:
       bones: []
       spriteID: 46e3d09d9eeab8850800000000000000
       internalID: 6380385616492576356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps10_0114_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 11
+        width: 68
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 090ce829c5c8c15a0800000000000000
+      internalID: -6549205428879834992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sps10_0114_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 5
+        width: 76
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d7eec3bbb71b6b0800000000000000
+      internalID: -5282304843817517703
       vertices: []
       indices: 
       edges: []
@@ -149,6 +199,8 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       sps10_0114_0: 6380385616492576356
+      sps10_0114_1: -6549205428879834992
+      sps10_0114_2: -5282304843817517703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
