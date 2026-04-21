@@ -97,6 +97,21 @@ public class GameManager : MonoBehaviour
         TryAdvancePhotoIndex();
     }
 
+    public void MergeMaxTier(Vector3 spawnPos, Fruit a, Fruit b)
+    {
+        if (GameEnd) return;
+
+        if (a != null) a.ReturnToPool();
+        if (b != null) b.ReturnToPool();
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySound(mergeClip);
+        }
+
+        UpdateScoreUI();
+        TryAdvancePhotoIndex();
+    }
 
 
     public void UpdateScoreUI()

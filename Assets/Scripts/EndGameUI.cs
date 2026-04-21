@@ -100,6 +100,8 @@ public class EndGameUI : MonoBehaviour
         yield return new WaitForSeconds(lightsOffDuration);
 
         lightController.EndGameLight();
+
+        yield return new WaitForSeconds(2f);
         endGameTitle.SetActive(true);
         winObject.SetActive(true);
         winButton.SetActive(true);
@@ -149,6 +151,8 @@ public class EndGameUI : MonoBehaviour
         yield return new WaitForSeconds(lightsOffDuration);
 
         lightController.EndGameLight();
+
+        yield return new WaitForSeconds(2f);
 
 
         endGameTitle.SetActive(true);

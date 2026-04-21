@@ -12,7 +12,9 @@ public class SuikaSpawner : MonoBehaviour
     [SerializeField] private GameObject[] fruitPrefabs;
 
     [SerializeField] private int unlockedFruitTier = 0;
+    [SerializeField] private int maxDroppableTier = 4;
     [SerializeField] private float spawnCooldown = 0.2f;
+
 
     [SerializeField] private float spawnPadding = 0.3f;
 
@@ -240,7 +242,8 @@ public class SuikaSpawner : MonoBehaviour
 
     private int RollNextWeighted()
     {
-        int n = unlockedFruitTier + 1;
+        int highestDroppableTier = Mathf.Min(unlockedFruitTier, maxDroppableTier);
+        int n = highestDroppableTier + 1;
 
         float total = 0f;
         float[] w = new float[n];
@@ -256,8 +259,10 @@ public class SuikaSpawner : MonoBehaviour
             r -= w[t];
             if (r <= 0f) return t;
         }
+
         return n - 1;
     }
+
 
     public void UnlockTier(int tier)
     {

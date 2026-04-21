@@ -14,6 +14,8 @@ public class Fruit : MonoBehaviour
 
     [Range(0, 9)]
     public int tierIndex;
+    private const int MaxTier = 9;
+
 
     public FruitState State { get; private set; } = FruitState.Dropping;
     public bool IsInThePool => State == FruitState.InThePool;
@@ -130,13 +132,20 @@ public class Fruit : MonoBehaviour
 
         if (other.tierIndex != tierIndex) return;
         if (isMerging || other.isMerging) return;
-        if (tierIndex >= 9) return;
         if (GetInstanceID() > other.GetInstanceID()) return;
 
         isMerging = true;
         other.isMerging = true;
 
         Vector3 spawnPos = (transform.position + other.transform.position) * 0.5f;
+
+        if (tierIndex >= MaxTier)
+        {
+            GameManager.Instance.MergeMaxTier(spawnPos, this, other);
+            return;
+        }
+
         GameManager.Instance.Merge(tierIndex, spawnPos, this, other);
+
     }
 }
