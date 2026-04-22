@@ -12,25 +12,28 @@ public class SuikaSpawner : MonoBehaviour
     [SerializeField] private GameObject[] fruitPrefabs;
 
     [SerializeField] private int unlockedFruitTier = 0;
-    [SerializeField] private int maxDroppableTier = 4;
-    [SerializeField] private float spawnCooldown = 0.2f;
+    int maxDroppableTier = 4;
+    float spawnCooldown = 1f;
 
 
-    [SerializeField] private float spawnPadding = 0.3f;
+    float spawnPadding = 0.05f;
 
-    [SerializeField] private float randomDropOffsetX = 0.15f;
-    private bool includeFruitRadiusInClamp = true;
+    float randomDropOffsetX = 0.03f;
+    bool includeFruitRadiusInClamp = true;
     public Fruit heldFruit;
 
     [SerializeField] private FruitPoolManager fruitPoolManager;
 
     public event Action<int> OnNextChanged;
+    public event Action<int, int> OnPreviewChanged;
     private float nextSpawnTime;
 
     public int currentFruitIndex { get; private set; }
     public int nextFruitIndex { get; private set; }
+    public int queuedFruitIndex { get; private set; }
 
-    private bool isPressing;
+
+    bool isPressing;
 
     [SerializeField, Range(0f, 0.2f)]
     private float highTierPenalty = 0.06f;
@@ -77,7 +80,10 @@ public class SuikaSpawner : MonoBehaviour
     {
         currentFruitIndex = RollNextWeighted();
         nextFruitIndex = RollNextWeighted();
+        queuedFruitIndex = RollNextWeighted();
+
         OnNextChanged?.Invoke(nextFruitIndex);
+        OnPreviewChanged?.Invoke(nextFruitIndex, queuedFruitIndex);
 
         SpawnHeldFruit();
         SnapHeldToPointerX();
@@ -163,8 +169,11 @@ public class SuikaSpawner : MonoBehaviour
         heldFruit = null;
 
         currentFruitIndex = nextFruitIndex;
-        nextFruitIndex = RollNextWeighted();
+        nextFruitIndex = queuedFruitIndex;
+        queuedFruitIndex = RollNextWeighted();
+
         OnNextChanged?.Invoke(nextFruitIndex);
+        OnPreviewChanged?.Invoke(nextFruitIndex, queuedFruitIndex);
 
         SpawnHeldFruit();
         SnapHeldToPointerX();

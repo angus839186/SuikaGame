@@ -28,9 +28,14 @@ public class NextPreviewUI : MonoBehaviour
     private void HandleNextChanged(int tier)
     {
         if (previewImage == null) return;
-        if (tier < 0 || tier >= tierSprites.Length) return;
+
+        if (tier < 0 || tier >= tierSprites.Length)
+        {
+            previewImage.enabled = false;
+            return;
+        }
 
         previewImage.sprite = tierSprites[tier];
-        previewImage.enabled = (previewImage.sprite != null);
+        previewImage.enabled = previewImage.sprite != null;
     }
 }

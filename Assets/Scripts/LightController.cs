@@ -41,7 +41,7 @@ public class LightController : MonoBehaviour
     public void EndGameLight()
     {
         if (sceneLight != null) sceneLight.SetLight(0.05f);
-        if (highLight != null) highLight.SetLight(0.6f);
+        if (highLight != null) highLight.SetLight(1f);
         if (groundLight != null) groundLight.SetLight(0.6f);
         AudioManager.instance.PlaySound(openClip);
     }

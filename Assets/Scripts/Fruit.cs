@@ -83,8 +83,6 @@ public class Fruit : MonoBehaviour
 
     public void ReturnToPool()
     {
-        isMerging = false;
-
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
@@ -101,6 +99,7 @@ public class Fruit : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -130,6 +129,9 @@ public class Fruit : MonoBehaviour
         Fruit other = collision.collider.GetComponent<Fruit>();
         if (other == null) return;
 
+        if (!gameObject.activeInHierarchy || !other.gameObject.activeInHierarchy) return;
+        if (State != FruitState.InThePool || other.State != FruitState.InThePool) return;
+
         if (other.tierIndex != tierIndex) return;
         if (isMerging || other.isMerging) return;
         if (GetInstanceID() > other.GetInstanceID()) return;
@@ -146,6 +148,7 @@ public class Fruit : MonoBehaviour
         }
 
         GameManager.Instance.Merge(tierIndex, spawnPos, this, other);
+
 
     }
 }
