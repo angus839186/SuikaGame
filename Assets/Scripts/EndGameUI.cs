@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class EndGameUI : MonoBehaviour
@@ -21,6 +22,9 @@ public class EndGameUI : MonoBehaviour
     [SerializeField] private GameObject endGameTitle;
     [SerializeField] private GameObject winButton;
 
+    [SerializeField] private TextMeshProUGUI totalText;
+    [SerializeField] private TextMeshProUGUI totalGroupText;
+
     [Header("Animation")]
     [SerializeField] private Animator winAnimator;
 
@@ -30,13 +34,17 @@ public class EndGameUI : MonoBehaviour
 
 
     [Header("Timing")]
-    [SerializeField] private float lightsOffDuration = 2f;
-    [SerializeField] private float FadeInDuration = 2.5f;
+    [SerializeField] private float lightsDuration = 1f;
+    [SerializeField] private float FadeInDuration = 1f;
 
     [Header("Audio")]
     [SerializeField] private AudioClip openCanClip;
     [SerializeField] private AudioClip winMusic;
     [SerializeField] private AudioClip loseMusic;
+
+    [SerializeField] private AudioClip lightoffClip;
+    [SerializeField] private AudioClip lighton1Clip;
+    [SerializeField] private AudioClip lighton2Clip;
 
     private bool isWaitingForWinButton;
     private bool isWinSequencePlaying;
@@ -87,6 +95,8 @@ public class EndGameUI : MonoBehaviour
         {
             StartCoroutine(PlayLoseFlow());
         }
+        totalText.text = gameManager.Score.ToString();
+        totalGroupText.text = $"{gameManager.currentPhotoIndex} / 34";
     }
 
     private IEnumerator PlayWinFlow()
@@ -96,12 +106,18 @@ public class EndGameUI : MonoBehaviour
         gameOverRoot.SetActive(true);
 
         lightController.CloseAllLight();
+        AudioManager.instance.PlaySound(lightoffClip);
 
-        yield return new WaitForSeconds(lightsOffDuration);
+        yield return new WaitForSeconds(lightsDuration);
+
+        AudioManager.instance.PlaySound(lighton1Clip);
+
+        yield return new WaitForSeconds(lightsDuration);
 
         lightController.EndGameLight();
+        AudioManager.instance.PlaySound(lighton2Clip);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         endGameTitle.SetActive(true);
         winObject.SetActive(true);
         winButton.SetActive(true);
@@ -128,7 +144,7 @@ public class EndGameUI : MonoBehaviour
         winAnimator.gameObject.SetActive(true);
         winAnimator.Play(winAnimationStateName,0,0f);
 
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(4f);
 
         StartCoroutine(FadeIn(credit));
 
@@ -147,12 +163,18 @@ public class EndGameUI : MonoBehaviour
         gameOverRoot.SetActive(true);
 
         lightController.CloseAllLight();
+        AudioManager.instance.PlaySound(lightoffClip);
 
-        yield return new WaitForSeconds(lightsOffDuration);
+        yield return new WaitForSeconds(lightsDuration);
+
+        AudioManager.instance.PlaySound(lighton1Clip);
+
+        yield return new WaitForSeconds(lightsDuration);
 
         lightController.EndGameLight();
+        AudioManager.instance.PlaySound(lighton2Clip);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
 
         endGameTitle.SetActive(true);
@@ -160,7 +182,7 @@ public class EndGameUI : MonoBehaviour
         loseAnimator.gameObject.SetActive(true);
         loseAnimator.Play(loseAnimationStateName,0,0f);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
         StartCoroutine(FadeIn(credit));
 

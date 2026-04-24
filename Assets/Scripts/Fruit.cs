@@ -116,9 +116,14 @@ public class Fruit : MonoBehaviour
                 if (AudioManager.instance != null)
                 {
                     if (hitWall)
-                        AudioManager.instance.PlaySound(fruitHitClip);
-                    else
+                    {
                         AudioManager.instance.PlaySound(groundHitClip);
+                    }
+                    else
+                    {
+                        AudioManager.instance.PlaySound(fruitHitClip);
+                    }
+                        
                 }
             }
         }
@@ -130,7 +135,6 @@ public class Fruit : MonoBehaviour
         if (other == null) return;
 
         if (!gameObject.activeInHierarchy || !other.gameObject.activeInHierarchy) return;
-        if (State != FruitState.InThePool || other.State != FruitState.InThePool) return;
 
         if (other.tierIndex != tierIndex) return;
         if (isMerging || other.isMerging) return;

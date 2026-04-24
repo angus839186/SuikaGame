@@ -13,7 +13,14 @@ public class GameOverLine : MonoBehaviour
 
         if (fruit.IsInThePool)
         {
-            GameManager.Instance.EndGame(false);
+            if (GameManager.Instance.IsPhotoCompleted())
+            {
+                GameManager.Instance.EndGame(true);
+            }
+            else
+            {
+                GameManager.Instance.EndGame(false);
+            }
         }
     }
 }

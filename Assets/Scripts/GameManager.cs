@@ -23,12 +23,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip mergeClip;
 
     [Header("分數")]
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] int Score;
+    public TextMeshProUGUI scoreText;
+    public int Score;
 
     [Header("門檻")]
-    [SerializeField] TextMeshProUGUI photoScoreThresholdText;
-    [SerializeField] int currentPhotoIndex;
+    public TextMeshProUGUI photoScoreThresholdText;
+    public int currentPhotoIndex;
     [SerializeField] private int[] photoScoreThresholds;
     [SerializeField] private int[] tierScores;
     public event Action<int> OnPhotoIndexChanged;
@@ -80,13 +80,7 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.PlaySound(mergeClip);
         }
 
-        GameObject newFruit = spawner.SpawnSpecific(nextTierIndex, spawnPos);
-        Fruit fruit = newFruit != null ? newFruit.GetComponent<Fruit>() : null;
-
-        if (fruit != null)
-        {
-            fruit.SetInThePool();
-        }
+        spawner.SpawnSpecific(nextTierIndex, spawnPos);
 
         spawner.UnlockTier(nextTierIndex);
 
@@ -165,10 +159,13 @@ public class GameManager : MonoBehaviour
             UpdateScoreUI();
         }
 
-        if (currentPhotoIndex >= photoScoreThresholds.Length)
-        {
-            EndGame(true);
-        }
+    }
+
+    public bool IsPhotoCompleted()
+    {
+        return photoScoreThresholds != null
+            && photoScoreThresholds.Length > 0
+            && currentPhotoIndex >= photoScoreThresholds.Length;
     }
     public void SetLanguage(Language language)
     {
