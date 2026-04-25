@@ -78,7 +78,8 @@ public class PhotoAnimationController : MonoBehaviour
     }
     private void HandlePhotoIndexChanged(int index)
     {
-        if (stampImage != null && stampObjects != null && index >= 0 && index < stampObjects.Length)
+        Debug.Log(index);
+        if (stampImage != null && stampObjects != null && index > 0 && index <= stampObjects.Length)
         {
             stampImage.gameObject.SetActive(true);
             stampImage.sprite = stampObjects[index - 1];

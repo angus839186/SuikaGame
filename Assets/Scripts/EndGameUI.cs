@@ -45,6 +45,7 @@ public class EndGameUI : MonoBehaviour
     [SerializeField] private AudioClip lightoffClip;
     [SerializeField] private AudioClip lighton1Clip;
     [SerializeField] private AudioClip lighton2Clip;
+    [SerializeField] private AudioClip lighton3Clip;
 
     private bool isWaitingForWinButton;
     private bool isWinSequencePlaying;
@@ -96,7 +97,10 @@ public class EndGameUI : MonoBehaviour
             StartCoroutine(PlayLoseFlow());
         }
         totalText.text = gameManager.Score.ToString();
-        totalGroupText.text = $"{gameManager.currentPhotoIndex} / 34";
+        if (isWin == false)
+        {
+            totalGroupText.text = $"{gameManager.currentPhotoIndex} / 34";
+        }
     }
 
     private IEnumerator PlayWinFlow()
@@ -121,6 +125,7 @@ public class EndGameUI : MonoBehaviour
         endGameTitle.SetActive(true);
         winObject.SetActive(true);
         winButton.SetActive(true);
+        AudioManager.instance.PlaySound(lighton3Clip);
 
         isWaitingForWinButton = true;
     }
@@ -142,7 +147,7 @@ public class EndGameUI : MonoBehaviour
         AudioManager.instance.PlaySound(openCanClip);
 
         winAnimator.gameObject.SetActive(true);
-        winAnimator.Play(winAnimationStateName,0,0f);
+        winAnimator.Play(winAnimationStateName, 0, 0f);
 
         yield return new WaitForSeconds(4f);
 
@@ -180,7 +185,8 @@ public class EndGameUI : MonoBehaviour
         endGameTitle.SetActive(true);
 
         loseAnimator.gameObject.SetActive(true);
-        loseAnimator.Play(loseAnimationStateName,0,0f);
+        loseAnimator.Play(loseAnimationStateName, 0, 0f);
+        AudioManager.instance.PlaySound(lighton3Clip);
 
         yield return new WaitForSeconds(2f);
 

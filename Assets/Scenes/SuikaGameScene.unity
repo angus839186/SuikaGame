@@ -1485,7 +1485,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1469835777
   m_SortingLayer: 3
-  m_SortingOrder: 3
+  m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 4e5abc1e989919b4f8858182ccd68a9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1506,9 +1506,9 @@ Transform:
   m_GameObject: {fileID: 228063029}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.77, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1798534364}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1961,7 +1961,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.6
+  m_Volume: 0.75
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3081,8 +3081,8 @@ Transform:
   m_GameObject: {fileID: 505147509}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.67, y: -2.49, z: 0}
-  m_LocalScale: {x: 0.25, y: 7.16, z: 1}
+  m_LocalPosition: {x: -0.67, y: -1.63, z: 0}
+  m_LocalScale: {x: 0.25, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1973945875}
@@ -3778,7 +3778,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 382, y: -265}
+  m_AnchoredPosition: {x: 382, y: -350}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &681916957
@@ -6755,7 +6755,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 0/0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 81de4ce06f3bf2f49b39e9237c234c65, type: 2}
   m_sharedMaterial: {fileID: 5790579713087822308, guid: 81de4ce06f3bf2f49b39e9237c234c65, type: 2}
@@ -6782,8 +6782,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6913,9 +6913,10 @@ MonoBehaviour:
   openCanClip: {fileID: 8300000, guid: f8f6f53d29eedd14eab78515999e007d, type: 3}
   winMusic: {fileID: 8300000, guid: 2476284ceeb5c59428f2d18478484328, type: 3}
   loseMusic: {fileID: 8300000, guid: a8c79fb23274909428ea85e471ac7706, type: 3}
-  lightoffClip: {fileID: 0}
+  lightoffClip: {fileID: 8300000, guid: 88d6925b8918531458360531c26cd270, type: 3}
   lighton1Clip: {fileID: 8300000, guid: 6adb0bf640714634d846dd3ac1fef46d, type: 3}
   lighton2Clip: {fileID: 8300000, guid: a8d8ab9da12734a46a5c1cdbde01b63b, type: 3}
+  lighton3Clip: {fileID: 8300000, guid: 89152a26769990c4c849861b9f3b5b42, type: 3}
 --- !u!1 &1496361601
 GameObject:
   m_ObjectHideFlags: 0
@@ -7454,8 +7455,8 @@ Transform:
   m_GameObject: {fileID: 1686938957}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.33, y: -2.52, z: 0}
-  m_LocalScale: {x: 0.25, y: 7.16, z: 1}
+  m_LocalPosition: {x: 5.33, y: -1.66, z: 0}
+  m_LocalScale: {x: 0.25, y: 9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1973945875}
@@ -7903,7 +7904,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1469835777
   m_SortingLayer: 3
-  m_SortingOrder: 6
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: ea036f4ce69fc604bbeb305922c9e703, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8165,6 +8166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36290334f741e684b8c49b74dea7e75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameOverLine
+  gameOverDelay: 1
 --- !u!61 &1968575141
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8447,7 +8449,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 24/34
+  m_text: 0/0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 81de4ce06f3bf2f49b39e9237c234c65, type: 2}
   m_sharedMaterial: {fileID: 5790579713087822308, guid: 81de4ce06f3bf2f49b39e9237c234c65, type: 2}
@@ -8605,7 +8607,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1469835777
   m_SortingLayer: 3
-  m_SortingOrder: 3
+  m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 56000b1deeea34545b250ebedda6ca2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
