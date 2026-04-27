@@ -36,7 +36,7 @@ public class SuikaSpawner : MonoBehaviour
     bool isPressing;
 
     [SerializeField, Range(0f, 0.2f)]
-    private float highTierPenalty = 0.06f;
+    private float highTierPenalty = 0.08f;
 
     public bool canSpawn;
 
