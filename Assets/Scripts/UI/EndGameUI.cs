@@ -224,45 +224,19 @@ public class EndGameUI : MonoBehaviour
     {
         isWaitingForWinButton = false;
         isWinSequencePlaying = false;
+        gameOverRoot.SetActive(false);
+        playAgainButton.SetActive(false);
 
-        if (gameOverRoot != null)
-        {
-            gameOverRoot.SetActive(false);
-        }
+        endGameTitle.SetActive(false);
 
-        if (playAgainButton != null)
-        {
-            playAgainButton.SetActive(false);
-        }
+        endGameTitle.SetActive(false);
+        winButton.SetActive(false);
 
-        if (endGameTitle != null)
-        {
-            endGameTitle.SetActive(false);
-        }
+        winAnimator.gameObject.SetActive(false);
 
-        if (endGameTitle != null)
-        {
-            endGameTitle.SetActive(false);
-        }
-
-        if (winButton != null)
-        {
-            winButton.SetActive(false);
-        }
-
-        if (winAnimator != null)
-        {
-            winAnimator.gameObject.SetActive(false);
-        }
-
-        if (loseAnimator != null)
-        {
-            loseAnimator.gameObject.SetActive(false);
-        }
-
-        if (credit != null)
-        {
-            credit.gameObject.SetActive(false);
-        }
+        loseAnimator.gameObject.SetActive(false);
+        credit.gameObject.SetActive(false);
+        totalText.text = "";
+        totalGroupText.text = "";
     }
 }
