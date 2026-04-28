@@ -16,9 +16,7 @@ public class GameManager : MonoBehaviour
     }
     [Header("Reference")]
     public static GameManager Instance { get; private set; }
-    [SerializeField] private SuikaSpawner spawner;
-
-    [SerializeField] private EffectPoolManager effectPoolManager;
+    [SerializeField] private FruitSpawner spawner;
 
     [SerializeField] private AudioClip mergeClip;
 
@@ -50,10 +48,6 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Application.targetFrameRate = 60;
-        if (effectPoolManager == null)
-        {
-            effectPoolManager = EffectPoolManager.Instance;
-        }
     }
 
     private void Start()

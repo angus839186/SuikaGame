@@ -19,6 +19,10 @@ public class PhotoAnimationController : MonoBehaviour
 
     [Header("電視")]
     [SerializeField] private Animator TvAnimator;
+
+    [SerializeField] private SpriteRenderer TvSprite;
+
+    [SerializeField] private Sprite[] TvPhotos;
     private Coroutine tvPlayCoroutine;
     [SerializeField] private string tvLoadingAnimationName = "Loading";
 
@@ -78,7 +82,6 @@ public class PhotoAnimationController : MonoBehaviour
     }
     private void HandlePhotoIndexChanged(int index)
     {
-        Debug.Log(index);
         if (stampImage != null && stampObjects != null && index > 0 && index <= stampObjects.Length)
         {
             stampImage.gameObject.SetActive(true);
@@ -117,7 +120,8 @@ public class PhotoAnimationController : MonoBehaviour
                 StopCoroutine(tvPlayCoroutine);
             }
 
-            tvPlayCoroutine = StartCoroutine(PlayTvAnimationWithLoading(animationStateName));
+            tvPlayCoroutine = StartCoroutine(PlayTvAnimationWithLoading(currentPhotoGroupIndex));
+
         }
 
         NewPhotoGroup = true;
@@ -206,9 +210,11 @@ public class PhotoAnimationController : MonoBehaviour
             : selectedGroup.EnglishBackground;
     }
 
-    private IEnumerator PlayTvAnimationWithLoading(string targetAnimationName)
+    private IEnumerator PlayTvAnimationWithLoading(int tvPhotoIndex)
     {
+        TvAnimator.enabled = true;
         TvAnimator.Play(tvLoadingAnimationName, -1, 0f);
+
         AudioManager.instance.PlaySound(LoadingClip);
         yield return null;
 
@@ -217,9 +223,14 @@ public class PhotoAnimationController : MonoBehaviour
 
         yield return new WaitForSeconds(loadingDuration);
 
-        TvAnimator.Play(targetAnimationName, -1, 0f);
+
+        TvAnimator.enabled = false;
+        TvSprite.sprite = TvPhotos[tvPhotoIndex];
+
         tvPlayCoroutine = null;
     }
+
+
 
 
     private void InitializeRemainingPhotoGroups()

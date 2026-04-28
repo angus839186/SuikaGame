@@ -106,8 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fruit
   wallLayerName: Wall
-  groundHitClip: {fileID: 8300000, guid: 85ac1e8e934d46a44afe28e2f221e828, type: 3}
-  fruitHitClip: {fileID: 8300000, guid: 0ac201d2519833a4f8897b88a3c5f3fa, type: 3}
+  groundHitClip: {fileID: 8300000, guid: 594a178b9f653f045a5ab2da04939ab7, type: 3}
+  fruitHitClip: {fileID: 8300000, guid: 9789987e4b9bd8f4992d4c327589f1d1, type: 3}
   tierIndex: 6
 --- !u!58 &4757319318445604690
 CircleCollider2D:

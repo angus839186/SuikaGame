@@ -379,12 +379,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73282134}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1903492788}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &89781418
 GameObject:
@@ -656,7 +656,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1344720092}
-  - {fileID: 920979092}
   m_Father: {fileID: 645545223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &116300212
@@ -1523,7 +1522,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 438d2a777475f5748b513669e05d0179, type: 3}
+  m_Resource: {fileID: 8300000, guid: f80bf3d1c9646e741aa2aa24157057cc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1868,8 +1867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   spawner: {fileID: 1603706462}
-  effectPoolManager: {fileID: 0}
-  mergeClip: {fileID: 8300000, guid: f61f166f50e9c464ab3e3468f27ac23c, type: 3}
+  mergeClip: {fileID: 8300000, guid: 09784ac9d2d74484c906d4b569a3660a, type: 3}
   scoreText: {fileID: 881754966}
   Score: 0
   photoScoreThresholdText: {fileID: 1482761649}
@@ -1917,7 +1915,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  switchLanguageClip: {fileID: 8300000, guid: ad25be4f487a86c4a8d1e836ab31d77f, type: 3}
+  switchLanguageClip: {fileID: 8300000, guid: fe4a04929ba20ad4da2127ea8590c4ab, type: 3}
 --- !u!4 &292153102
 Transform:
   m_ObjectHideFlags: 0
@@ -2361,7 +2359,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2476284ceeb5c59428f2d18478484328, type: 3}
+  m_Resource: {fileID: 8300000, guid: a42cf806714149445896dc05ac8655b9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.25
   m_Pitch: 1
@@ -2810,11 +2808,47 @@ MonoBehaviour:
   PhotoAnimator: {fileID: 1988325085}
   backgroundImage: {fileID: 60830319}
   stampImage: {fileID: 681916957}
-  photoGroupOpenClip: {fileID: 8300000, guid: 699e15221ae27664a8f0e22213e6e174, type: 3}
-  photoGroupCloseClip: {fileID: 8300000, guid: b003987cc3b382e4f82871d19dc9c178, type: 3}
+  photoGroupOpenClip: {fileID: 8300000, guid: 6076df55f2207a94a96d6b2c84235f6a, type: 3}
+  photoGroupCloseClip: {fileID: 8300000, guid: 719e7230e4ae7df4ca48a68b0ad2f693, type: 3}
   TvAnimator: {fileID: 1280115196}
+  TvSprite: {fileID: 1280115194}
+  TvPhotos:
+  - {fileID: 21300000, guid: 58a933441014e5d4cb26d06753b2e1b7, type: 3}
+  - {fileID: 21300000, guid: e95367b1339fefe4cb4df27a05ec28d2, type: 3}
+  - {fileID: 21300000, guid: 24f8929e76b8c1e4190268a7e1a91fa8, type: 3}
+  - {fileID: 21300000, guid: 2b1ae88e38d12ba42b5c40e6c203a32a, type: 3}
+  - {fileID: 21300000, guid: 6316d9779fde15b4d922eab81edbe3c1, type: 3}
+  - {fileID: 21300000, guid: cf80e691c6000eb43913449286432a08, type: 3}
+  - {fileID: 21300000, guid: 6807c6f122bab574dac047f310417e45, type: 3}
+  - {fileID: 21300000, guid: 5c2d533cb2ebbc04782b361e4dd7d39f, type: 3}
+  - {fileID: 21300000, guid: 263ac227f5630d9448b0807f34d07a04, type: 3}
+  - {fileID: 21300000, guid: 89af0979d506b924aa2eebd32557612f, type: 3}
+  - {fileID: 21300000, guid: da9df1477518bd9478333aa1e88691a9, type: 3}
+  - {fileID: 21300000, guid: 648151a301342de4a89ba2e93bd98409, type: 3}
+  - {fileID: 21300000, guid: fa966f8a474357b4cb66f76d31dc5cc4, type: 3}
+  - {fileID: 21300000, guid: b54c7d37f5f87b84c8c6192acaf2f963, type: 3}
+  - {fileID: 21300000, guid: 566d61397957b2c45bd9cd2283727a97, type: 3}
+  - {fileID: 21300000, guid: 9f5158dd04ad4df4e984107f35d11f63, type: 3}
+  - {fileID: 21300000, guid: b91100d81c0b68c44803f19dda60e6be, type: 3}
+  - {fileID: 21300000, guid: f9130b55c3d7bce4f81f657d733eb842, type: 3}
+  - {fileID: 21300000, guid: e3db91e0436d08e42a4d99063e759768, type: 3}
+  - {fileID: 21300000, guid: 6b7bb25a0f987dc46861049747350e67, type: 3}
+  - {fileID: 21300000, guid: da87f592278fa2e4395173b95963a2f3, type: 3}
+  - {fileID: 21300000, guid: af642280d5cadd641a2f5933f519a60f, type: 3}
+  - {fileID: 21300000, guid: 001efd8702769844f99f275e8ae59676, type: 3}
+  - {fileID: 21300000, guid: 0cb16019858bb2a4ca8a4a60c33e9297, type: 3}
+  - {fileID: 21300000, guid: 89a36ae70d09efc4ba6b4731e910439a, type: 3}
+  - {fileID: 21300000, guid: ee42eed5c2d405d4fb638a53538a7ce7, type: 3}
+  - {fileID: 21300000, guid: 2ce55d6322d99f440b4da0bcafdc48a2, type: 3}
+  - {fileID: 21300000, guid: 86aa9a44d155a1a49bc59cca8ea9e01d, type: 3}
+  - {fileID: 21300000, guid: bcc8e796e27dfb04aa75e07aebe09b90, type: 3}
+  - {fileID: 21300000, guid: f1f65de5f88fb8e4c84e74baee47fc16, type: 3}
+  - {fileID: 21300000, guid: 2f9b1563045b56148b1322110f038997, type: 3}
+  - {fileID: 21300000, guid: 07451e7da75c54b41a9876f3e1584d55, type: 3}
+  - {fileID: 21300000, guid: 608db6b9888b63844bed281296bf3671, type: 3}
+  - {fileID: 8026900322229874863, guid: 8a560c9166e91c3499898df52ef7cffb, type: 3}
   tvLoadingAnimationName: Loading
-  LoadingClip: {fileID: 8300000, guid: 25a823e8199cd77469c751ce31d3fb55, type: 3}
+  LoadingClip: {fileID: 8300000, guid: 3df69e136ce1e414794e1cd5e1001433, type: 3}
   RedButton: {fileID: 1475554619}
   photoUiButton: {fileID: 765312448}
   photoGroups:
@@ -4554,53 +4588,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 916231611}
   m_CullTransparentMesh: 1
---- !u!1 &920979091
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 920979092}
-  - component: {fileID: 920979093}
-  m_Layer: 0
-  m_Name: EffectPoolManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &920979092
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920979091}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 102607288}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &920979093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920979091}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df036a5acee35d24787a484f159275f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EffectPoolManager
-  effectPrefab: {fileID: 0}
-  initialSize: 6
-  effectLifetime: 1
 --- !u!1 &1030817261
 GameObject:
   m_ObjectHideFlags: 0
@@ -6129,7 +6116,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: b48185d9f2b876441a06a9dd85a24020, type: 3}
+  m_Resource: {fileID: 8300000, guid: 69f6fbccc85f8df4981579bae52d44ed, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.15
   m_Pitch: 1
@@ -6910,13 +6897,13 @@ MonoBehaviour:
   loseAnimationStateName: Fail
   lightsDuration: 1
   FadeInDuration: 1.5
-  openCanClip: {fileID: 8300000, guid: f8f6f53d29eedd14eab78515999e007d, type: 3}
-  winMusic: {fileID: 8300000, guid: 2476284ceeb5c59428f2d18478484328, type: 3}
-  loseMusic: {fileID: 8300000, guid: a8c79fb23274909428ea85e471ac7706, type: 3}
-  lightoffClip: {fileID: 8300000, guid: 88d6925b8918531458360531c26cd270, type: 3}
-  lighton1Clip: {fileID: 8300000, guid: 6adb0bf640714634d846dd3ac1fef46d, type: 3}
-  lighton2Clip: {fileID: 8300000, guid: a8d8ab9da12734a46a5c1cdbde01b63b, type: 3}
-  lighton3Clip: {fileID: 8300000, guid: 89152a26769990c4c849861b9f3b5b42, type: 3}
+  openCanClip: {fileID: 8300000, guid: 2053694abf7dcb24eb8ad1c01ae50e6a, type: 3}
+  winMusic: {fileID: 8300000, guid: a42cf806714149445896dc05ac8655b9, type: 3}
+  loseMusic: {fileID: 8300000, guid: a07313f4a608edc43b630272a1d0ec55, type: 3}
+  lightoffClip: {fileID: 8300000, guid: 4a7044678d6905c49ab4341d6798ebb5, type: 3}
+  lighton1Clip: {fileID: 8300000, guid: 0eaedb5e6a0e25c46a24d7bb7bf1e4b3, type: 3}
+  lighton2Clip: {fileID: 8300000, guid: c1a6a9c67d13f1f46b2712d7d5bc5514, type: 3}
+  lighton3Clip: {fileID: 8300000, guid: a029a4aeb97976040978649d2ecc1854, type: 3}
 --- !u!1 &1496361601
 GameObject:
   m_ObjectHideFlags: 0
@@ -8101,6 +8088,7 @@ Transform:
   m_Children:
   - {fileID: 1424325289}
   - {fileID: 418210083}
+  - {fileID: 73282137}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1932987736
@@ -8458,8 +8446,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4279243583
-  m_fontColor: {r: 0.24705884, g: 0.07450981, b: 0.0627451, a: 1}
+    rgba: 4278192845
+  m_fontColor: {r: 0.80392164, g: 0.039215688, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9262,7 +9250,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
-  - {fileID: 73282137}
   - {fileID: 645545223}
   - {fileID: 1903492788}
   - {fileID: 1798534364}

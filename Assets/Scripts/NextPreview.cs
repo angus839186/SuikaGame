@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class NextPreview : MonoBehaviour
 {
-    [SerializeField] private SuikaSpawner spawner;
+    [SerializeField] private FruitSpawner spawner;
 
     [SerializeField] private Animator FishAnimator;
 
