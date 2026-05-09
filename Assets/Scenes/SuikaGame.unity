@@ -1385,12 +1385,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 312602584}
-  - {fileID: 1235383704}
-  - {fileID: 240207466}
   - {fileID: 2084290111}
   - {fileID: 1272235270}
-  - {fileID: 1607438135}
   - {fileID: 119795536}
   - {fileID: 1510624345}
   - {fileID: 528281797}
@@ -1522,7 +1518,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 438d2a777475f5748b513669e05d0179, type: 3}
+  m_Resource: {fileID: 8300000, guid: f80bf3d1c9646e741aa2aa24157057cc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1639,7 +1635,7 @@ Transform:
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 208666642}
+  m_Father: {fileID: 1932987737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &240207467
 Animator:
@@ -1709,7 +1705,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1469835777
   m_SortingLayer: 3
-  m_SortingOrder: 7
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: 5b2639f675d7e384ab1574b1f98bd196, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2121,7 +2117,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 208666642}
+  m_Father: {fileID: 1932987737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &312602585
 Animator:
@@ -2191,7 +2187,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1469835777
   m_SortingLayer: 3
-  m_SortingOrder: 7
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: f566fc1b9b765a44d94a3e1662955d60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5704,7 +5700,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 208666642}
+  m_Father: {fileID: 1932987737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1235383705
 Animator:
@@ -5774,7 +5770,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1469835777
   m_SortingLayer: 3
-  m_SortingOrder: 7
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: 4b4c8ec259eec84499b9517be17c9474, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7244,7 +7240,7 @@ Transform:
   m_LocalScale: {x: 0.51, y: 0.51, z: 0.51}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 208666642}
+  m_Father: {fileID: 1932987737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1607438136
 Animator:
@@ -7314,7 +7310,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1469835777
   m_SortingLayer: 3
-  m_SortingOrder: 7
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: 0fb46a45c4e6d354ca7762f6ec4df321, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8121,6 +8117,10 @@ Transform:
   m_Children:
   - {fileID: 1766268213}
   - {fileID: 677348531}
+  - {fileID: 1607438135}
+  - {fileID: 312602584}
+  - {fileID: 1235383704}
+  - {fileID: 240207466}
   m_Father: {fileID: 2119390095}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1968575139
